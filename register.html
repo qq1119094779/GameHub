@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>注册</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link type="text/css" rel="stylesheet" href="css/custom-ui.css">
+    <link type="text/css" rel="stylesheet" href="css/select2.css">
+    <link type="text/css" rel="stylesheet" href="css/flat/red.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/functions.css">
+    <script type="text/javascript" src="js/jquery1.91.min.js"></script>
+    <script type="text/javascript" src="js/select2.min.js"></script>
+    <script type="text/javascript" src="js/icheck.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
+    <script src='./js/functions.min.js'></script>
+    <style type="text/css">
+        body {
+            background: url(images/beijing.jpg) no-repeat center;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lte IE 8]>
+<div class="ie7_hints">温馨提示：您所使用的浏览器版本过低，为保证账户安全和浏览体验建议升级为最新版本浏览器</div>
+<![endif]-->
+    <!--头部start-->
+    <div class="ease-3" id="head">
+        <div class="nr w1200 clearfix mar0">
+            <div class="fl"><a class="logo" href="index.html" title=""><img src="images/logo.png" alt="" /></a></div>
+            <div class="fl">
+                <div class="navbox">
+                    <ul class="clearfix nav_shu">
+                        <li class="nLi on">
+                            <h3><a class="ease-1" href="index.html"><span>探索游戏</span></a></h3>
+                        </li>
+                        <li class="nLi">
+                            <h3><a class="ease-1" href="found_friend.html"><span>发现朋友</span></a></h3>
+                        </li>
+                        <li class="nLi">
+                            <h3><a class="ease-1" href="javascript:;"><span>客服</span></a></h3>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="head-right clearfix fr">
+                <div class="searchbox fl">
+                    <form method="post">
+                        <input type="text" class="input_text search_input ease-3 radius-5" placeholder="有没有弱提示" />
+                        <button class="search_submit ease-3">搜索</button>
+                    </form>
+                </div>
+                <ul class="login_status fr clearfix">
+                    <!--登录前的状态-->
+                    <li class="top_item top_item_login"><a href="login.html" class="link-a">登录</a></li>
+                    <li class="top_item top_item_login"><a href="###" class="link-a">/</a></li>
+                    <li class="top_item top_item_login"><a href="register.html" class="link-a txt-peach">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--头部end-->
+    <div class="section">
+        <div class="nr w1200 mar0">
+            <div class="login_box radius-5 register_box clearfix">
+                <div class="login item">
+                    <div class="bt">
+                        <h1 class="txt-c"><span>注册一个新账号</span></h1>
+                    </div>
+                    <div>
+                        <div class="div mb10"><input type="text" class="input_text radius-5 email" placeholder="请输入您的邮箱"
+                                value=""></div>
+                        <div class="div mb10"><input type="password" class="input_text radius-5 password"
+                                placeholder="请输入您的密码" value=""></div>
+                        <div class="div mb10"><input type="text" class="input_text radius-5 username"
+                                placeholder="请输入您的名字" value=""></div>
+                        <!-- <div class="div mb10">
+                            <div class="verification">
+                                <img src="images/verification.jpg" style="width:247px;" alt="" />
+                            </div>
+                        </div> -->
+                        <div class="div"><button class="btn_submit btn_blue btn_small radius-5 ease-1" type="submit"
+                                style="margin-top:25px;margin-bottom:10px;">注册</button></div>
+                        <div class="form_item txt-r mb10">
+                            <div class="fr">
+                                <label class="cpt">
+                                    <input type="checkbox" class="icheck" />
+                                    <span>注册协议</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            /*icheck js*/
+            $('input.icheck').iCheck({
+                checkboxClass: 'icheckbox_flat-red',
+                radioClass: 'iradio_flat-red'
+            });
+            $('.btn_submit').on('click', function () {
+                var email = $('.email').val();
+                var password = $('.password').val();
+                var username = $('.username').val();
+                if (email == '' || password == '' || username == '') {
+                    tipAlert('请将内容填写完整')
+                } else if (!$("input[type='checkbox']").is(':checked')) {
+                    tipAlert('请勾选同意协议')
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        url: 'http://106.14.206.226:8080/gameHub/user/register',
+                        data: JSON.stringify({
+                            email: email,
+                            password: password,
+                            checkPassword: password,
+                            nickName: username
+                        }),
+                        success: function (data) {
+                            console.log(data)
+                            if (data.code == "false") {
+                                var msg = data.errorMessage;
+                                tipAlert(data.errorMessage)
+                            } else {
+                                var msg = data.success;
+                                tipAlert(msg)
+                                setTimeout(function () {
+                                    window.location.href = '/login.html'
+                                }, 3000)
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                        }
+                    })
+                }
+
+            })
+        })
+    </script>
+</body>
+
+</html>
