@@ -50,8 +50,8 @@ _padding:6px; /* ie6 */
   url('http://at.alicdn.com/t/font_1470966432_2199616.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
   url('//at.alicdn.com/t/font_1470966432_2199616.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-.iconfont{ font-size:16px; font-family:"iconfont"; color:inherit;-webkit-font-smoothing: antialiased;}                   
-                   
+.iconfont{ font-size:16px; font-family:"iconfont"; color:inherit;-webkit-font-smoothing: antialiased;}
+
 
 
 /*************代码正式开始******************/
@@ -166,7 +166,7 @@ a.txt-blue:hover{ color:#147bbd;}
 .searchbox .search_input{width:160px; height: 12px; line-height:1.3em;background:#fff; color: #d1d1d1; -webkit-border-radius:34px;-moz-border-radius:34px;border-radius:34px;behavior:url(ie-css3.htc);zoom:1; padding-left: 28px; border: 1px #999 solid;}
 .searchbox .search_submit{  display:block; width:70px; height:34px; background:none; border-left:1px solid #7f7f7f;color:#999; position: absolute; right:0;top: 0;}
 #head .login_status { margin-left: 148px; }
-#head .login_status li { float: left; } 
+#head .login_status li { float: left; }
 #head .login_status li a { color: #fff; line-height: 68px; }
 
 /*导航*/
@@ -259,12 +259,12 @@ opacity: 1;}
 #indexslider .prevStop,#indexslider .nextStop{ background-color:rgba(0,0,0,.2) !important;}
 #indexslider .prev.arrow_show{left:5%;
 filter: alpha(opacity=100);
--khtml-opacity: 1;     
+-khtml-opacity: 1;
 -moz-opacity: 1;
 opacity: 1;}
 #indexslider .next.arrow_show{right:5%;
 filter: alpha(opacity=100);
--khtml-opacity: 1;     
+-khtml-opacity: 1;
 -moz-opacity: 1;
 opacity: 1;}
 .index_banner .info { width: 267px; background: url(../images/alpha_black50.png) repeat; position: absolute; left: 52px; top: 50%; -webkit-transform: translate(0,-50%);
@@ -279,7 +279,7 @@ opacity: 1;}
 .index_banner .info .desc,.game_introduction .info .desc { font-size: 12px; line-height: 36px; max-height:285px; overflow: hidden; }
 .index_banner .info .focus,.game_introduction .info .focus { font-size: 10px; position: absolute; left: 14px; bottom:18px; }
 .index_banner .info .focus span,.game_introduction .info .focus span { display: inline-block;transform: scale(0.8,0.8);-webkit-transform: scale(0.8,0.8);-moz-transform: scale(0.8,0.8); }
- 
+
 
 .submenu{ background:#fff;  height:90px; line-height:90px; color:#fff; }
 .submenu .subnav { padding: 0 200px; }
@@ -394,7 +394,7 @@ transition: all 0.3s ease-out;}
 .icheckbox_flat-red.checked {     background-position: -19px 0; }
 /*发现朋友*/
 .found_friend { padding-top: 108px; }
-.found_friend .searchbox { margin-top: 0px; } 
+.found_friend .searchbox { margin-top: 0px; }
 .found_friend .searchbox .search_input { border-color: #b9b9b9; }
 .found_friend .shaixuan { margin-bottom: 80px; }
 .found_friend_list .item:hover img{transform: none;-webkit-transform: none;-o-webkit-transform: none;-moz-webkit-transform: none;}
@@ -429,7 +429,7 @@ transition: all 0.3s ease-out;}
 .zScroll{ height:100%;  position:relative; overflow:hidden;}
 .version_box { height: 400px; overflow: hidden; }
 #developer { padding-top: 40px; }
-#developer .pic { width: 84px; height: 84px; } 
+#developer .pic { width: 84px; height: 84px; }
 #developer .item .txt { padding: 5px 0; }
 #developer .item .tag { left: 90px; bottom:0; }
 #developer .filter_list li { margin-right: 136px; }
@@ -504,7 +504,7 @@ opacity: 00;}
 .radio_box .current { color: #666; }
 #imgHeadPhoto_2,.page_editor .change_avatar .pic02 { width:100px; height:100px; }
  .page_editor .change_avatar .pic02 a { left: 100px; }
-.page_editor .icheckbox_flat-red { background: url(../images/icon.png) no-repeat 0px 0; width: 18px; height:18px; background-size: cover; }  
+.page_editor .icheckbox_flat-red { background: url(../images/icon.png) no-repeat 0px 0; width: 18px; height:18px; background-size: cover; }
 .page_editor .icheckbox_flat-red.checked { background-position: -26px 0; }
 .page_editor { padding-bottom: 80px; }
 .page_editor .item_from { position: relative; }

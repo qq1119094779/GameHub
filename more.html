@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/jquery1.91.min.js"></script>
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
     <style type="text/css">
         #head{ background: #fff; }
         .nav_shu .nLi h3 a { color: #333; }
@@ -188,28 +189,28 @@ $("#indexslider").slide({
         $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
     }*/
 });
-$(function(){ 
-    $(".searchMenu").mouseover(function(){ 
+$(function(){
+    $(".searchMenu").mouseover(function(){
         $("#searchTab").slideDown(100);
         $(this).addClass("searchOpen");
-    }); 
-    $(".searchMenu").mouseleave(function(){ 
+    });
+    $(".searchMenu").mouseleave(function(){
         $("#searchTab").slideUp(10);
         $(this).removeClass("searchOpen");
-    }); 
+    });
 
     $("#searchTab li").hover(function(){
         $(this).addClass("selected");
     },function(){
         $(this).removeClass("selected");
     });
-     
+
     $("#searchTab li").click(function(){
         $("#searchSelected").html($(this).html());
         $("#searchTab").fadeOut(50);
         $("#searchSelected").removeClass("searchOpen");
     });
-    
+
 });
 //下拉菜单美化js
 $(function(){

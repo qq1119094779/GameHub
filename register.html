@@ -24,6 +24,19 @@
             background-size: cover;
             position: relative;
         }
+
+        .rightValidate { width: 247px; margin: 0px auto; position: relative; line-height: 33px; height: 33px; text-align: center; z-index: 99; }
+        .v_rightBtn { position: absolute; left: 0; top: 0; height: 33px; width: 40px; background: #ddd; cursor: pointer; }
+        .imgBtn{ width:44px; height: 171px; position: absolute; left: 0;  }
+        .imgBtn img{ width:100%;z-index:99; }
+        .imgBg{ position:absolute;bottom:35px;width: 280px; height: 171px; box-shadow: 0px 4px 8px #3C5476; display:none;z-index:9;}
+        .hkinnerWrap{ border: 1px solid #eee; }
+        .green{ border-color:#34C6C2 !important; }
+        .green .v_rightBtn{ background: #34C6C2; color: #fff; }
+        .red{ border-color:red !important; }
+        .red .v_rightBtn{ background: red; color: #fff; }
+        .refresh{ position: absolute; width: 30px; height: 30px; right: 4px; top: 4px; font-size: 12px; color: #fff; text-shadow: 0px 0px 9px #333; cursor: pointer; display: none; }
+        .notSel{ user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -webkit-touch-callout: none; }
     </style>
 </head>
 
@@ -82,11 +95,18 @@
                                 placeholder="请输入您的密码" value=""></div>
                         <div class="div mb10"><input type="text" class="input_text radius-5 username"
                                 placeholder="请输入您的名字" value=""></div>
-                        <!-- <div class="div mb10">
-                            <div class="verification">
-                                <img src="images/verification.jpg" style="width:247px;" alt="" />
+                        <div class="comImageValidate rightValidate">
+                            <div class="imgBg">
+                                <div class="imgBtn">
+                                    <img />
+                                </div>
                             </div>
-                        </div> -->
+                            <div class="hkinnerWrap" style="height: 33px;position: relative">
+                                <span  class="v_rightBtn "><em class="notSel">→</em></span>
+                                <span class="huakuai"  style="font-size: 12px;line-height: 33px;color: #A9A9A9;">向右滑动滑块填充拼图完成验证</span>
+                                <input type = "hidden" name="validX"/>
+                            </div>
+                        </div>
                         <div class="div"><button class="btn_submit btn_blue btn_small radius-5 ease-1" type="submit"
                                 style="margin-top:25px;margin-bottom:10px;">注册</button></div>
                         <div class="form_item txt-r mb10">
@@ -102,55 +122,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(function () {
-            /*icheck js*/
-            $('input.icheck').iCheck({
-                checkboxClass: 'icheckbox_flat-red',
-                radioClass: 'iradio_flat-red'
-            });
-            $('.btn_submit').on('click', function () {
-                var email = $('.email').val();
-                var password = $('.password').val();
-                var username = $('.username').val();
-                if (email == '' || password == '' || username == '') {
-                    tipAlert('请将内容填写完整')
-                } else if (!$("input[type='checkbox']").is(':checked')) {
-                    tipAlert('请勾选同意协议')
-                } else {
-                    $.ajax({
-                        type: 'POST',
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        url: 'http://106.14.206.226:8080/gameHub/user/register',
-                        data: JSON.stringify({
-                            email: email,
-                            password: password,
-                            checkPassword: password,
-                            nickName: username
-                        }),
-                        success: function (data) {
-                            console.log(data)
-                            if (data.code == "false") {
-                                var msg = data.errorMessage;
-                                tipAlert(data.errorMessage)
-                            } else {
-                                var msg = data.success;
-                                tipAlert(msg)
-                                setTimeout(function () {
-                                    window.location.href = '/login.html'
-                                }, 3000)
-                            }
-                        },
-                        error: function (err) {
-                            console.log(err)
-                        }
-                    })
-                }
-
-            })
-        })
-    </script>
 </body>
-
+<script src="./js/view/register.js"></script>
 </html>
