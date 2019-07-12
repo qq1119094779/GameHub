@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>注册</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -12,32 +13,14 @@
     <link type="text/css" rel="stylesheet" href="css/flat/red.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/views/register.css">
     <link rel="stylesheet" href="./css/functions.css">
     <script type="text/javascript" src="js/jquery1.91.min.js"></script>
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/icheck.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
+    <script src="js/common.js"></script>
     <script src='./js/functions.min.js'></script>
-    <style type="text/css">
-        body {
-            background: url(images/beijing.jpg) no-repeat center;
-            background-size: cover;
-            position: relative;
-        }
-
-        .rightValidate { width: 247px; margin: 0px auto; position: relative; line-height: 33px; height: 33px; text-align: center; z-index: 99; }
-        .v_rightBtn { position: absolute; left: 0; top: 0; height: 33px; width: 40px; background: #ddd; cursor: pointer; }
-        .imgBtn{ width:44px; height: 171px; position: absolute; left: 0;  }
-        .imgBtn img{ width:100%;z-index:99; }
-        .imgBg{ position:absolute;bottom:35px;width: 280px; height: 171px; box-shadow: 0px 4px 8px #3C5476; display:none;z-index:9;}
-        .hkinnerWrap{ border: 1px solid #eee; }
-        .green{ border-color:#34C6C2 !important; }
-        .green .v_rightBtn{ background: #34C6C2; color: #fff; }
-        .red{ border-color:red !important; }
-        .red .v_rightBtn{ background: red; color: #fff; }
-        .refresh{ position: absolute; width: 30px; height: 30px; right: 4px; top: 4px; font-size: 12px; color: #fff; text-shadow: 0px 0px 9px #333; cursor: pointer; display: none; }
-        .notSel{ user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -webkit-touch-callout: none; }
-    </style>
 </head>
 
 <body>
@@ -98,7 +81,7 @@
                         <div class="comImageValidate rightValidate">
                             <div class="imgBg">
                                 <div class="imgBtn">
-                                    <img />
+                                    <img src="#" />
                                 </div>
                             </div>
                             <div class="hkinnerWrap" style="height: 33px;position: relative">
@@ -113,7 +96,7 @@
                             <div class="fr">
                                 <label class="cpt">
                                     <input type="checkbox" class="icheck" />
-                                    <span>注册协议</span>
+                                    <span id="open-agreement" style="cursor: pointer">注册协议</span>
                                 </label>
                             </div>
                         </div>
@@ -122,6 +105,12 @@
             </div>
         </div>
     </div>
+    <div class="agreement-mask">
+        <div class="agreement">
+            <div class="agreement-header">GameHub  注册协议<div class="agreement-close" id="agreement-close"></div></div>
+            <div class="agreement-content" id="agreement-content"></div>
+        </div>
+    </div>
 </body>
-<script src="./js/view/register.js"></script>
+<script type="text/javascript" src="./js/view/register.js" charset="UTF-8"></script>
 </html>

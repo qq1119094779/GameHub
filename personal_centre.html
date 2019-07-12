@@ -285,56 +285,6 @@
     </div>
 </div>
 
-
-<script type="text/javascript">
-//切换
-$(".slide_personal_centre").slide({
-    titCell: ".hd a",
-    autoPage: false,  //是否使用自动显示分页
-    mainCell:".bd",
-    autoPlay:true,
-    effect:"fade",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
-    easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
-    trigger:"mouseover",   //触发方式  mouseover,click
-    delayTime:500,  //延迟时间
-    interTime:2000,  //间隔时间
-    triggerTime:0,
-    pnLoop:true,   //前后按钮循环，默认true
-    mouseOverStop:true   //鼠标经过停止播放，默认true
-});
-
-/*单选js*/
-$(function(){
-    $('.radio_box input').each(function(){
-        if($(this).attr('checked')){
-            $(this).next().addClass('current');
-        }
-    })
-    $('.radio_box .radio_item').click(function(){
-        if($(this).hasClass('open')){
-            $('#'+$(this).attr('open1')).show();
-            $('#'+$(this).attr('open2')).show();
-        }else{
-            $('#'+$(this).attr('open1')).hide();
-            $('#'+$(this).attr('open2')).hide();
-        }
-        $(this).prev().trigger('click');
-        $(this).parent().parent().find('.radio_item').removeClass('current');
-        $(this).addClass('current');
-        return false;
-    });
-});
-
-</script>
-<script type="text/javascript">
-    $(function(){
-        /*icheck js*/
-        $('input.icheck').iCheck({
-            checkboxClass: 'icheckbox_flat-red',
-            radioClass: 'iradio_flat-red'
-        });
-    })
-</script>
-
+<script src="./js/view/personal_centre.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 
 $(function () {
+    let closeAgreement = () => {
+        $('.agreement-mask').hide()
+    }
     /*icheck js*/
     $('input.icheck').iCheck({
         checkboxClass: 'icheckbox_flat-red',
@@ -10,15 +13,15 @@ $(function () {
         var password = $('.password').val();
         var username = $('.username').val();
         if (email == '' || password == '' || username == '') {
-            tipAlert('Çë½«ÄÚÈÝÌîÐ´ÍêÕû')
+            tipAlert('è¯·å°†å†…å®¹å¡«å†™å®Œæ•´')
         } else if (!$("input[type='checkbox']").is(':checked')) {
-            tipAlert('Çë¹´Ñ¡Í¬ÒâÐ­Òé')
+            tipAlert('è¯·å‹¾é€‰åŒæ„åè®®')
         } else {
             $.ajax({
                 type: 'POST',
                 contentType: 'application/json',
                 dataType: 'json',
-                url: 'http://106.14.206.226:8080/gameHub/user/register',
+                url: `${baseUrl}/gameHub/user/register`,
                 data: JSON.stringify({
                     email: email,
                     password: password,
@@ -27,15 +30,13 @@ $(function () {
                 }),
                 success: function (data) {
                     console.log(data)
-                    if (data.code == "false") {
+                    if (!data.code) {
                         var msg = data.errorMessage;
                         tipAlert(data.errorMessage)
                     } else {
                         var msg = data.success;
                         tipAlert(msg)
-                        setTimeout(function () {
-                            window.location.href = '/login.html'
-                        }, 3000)
+                        window.location.href = '/login.html'
                     }
                 },
                 error: function (err) {
@@ -45,8 +46,7 @@ $(function () {
         }
 
     })
-    ;(() => {
-    })();
+
     var x = "";
     $(".comImageValidate").ready(function () {
         validateImageInit();
@@ -72,7 +72,7 @@ $(function () {
 
         $('.v_rightBtn').on({
             mousedown: function(e) {
-                // $(".huakuai").html('');
+                $(".huakuai").html("");
                 $(".hkinnerWrap").removeClass("red green")
                 var el = $(this);
                 var os = el.offset();
@@ -111,11 +111,11 @@ $(function () {
         })
 
     });
-    /*Í¼ÐÎÑéÖ¤*/
+    /*å›¾å½¢éªŒè¯*/
     function submitDate(x) {
         console.log(x);
         $.ajax({
-            url:"http://106.14.206.226:8080/gameHub/verifiy/checkPhoto?X="+x,
+            url:`${baseUrl}/gameHub/verifiy/checkPhoto?X=${x}`,
             dataType:'json',
             type: "POST",
             success:function (data) {
@@ -124,8 +124,8 @@ $(function () {
                     $(".hkinnerWrap input[name='validX']").val(x);
                     $("#X").val(x);
                     //$("#Y").val(y);
-                    alert("ÑéÖ¤³É¹¦");
-                    layer.msg("ÑéÖ¤³É¹¦", {time:1000,icon:1})
+                    alert("éªŒè¯æˆåŠŸ");
+                    layer.msg("éªŒè¯æˆåŠŸ", {time:1000,icon:1})
                 } else {
                     $(".hkinnerWrap").addClass("red").removeClass("green");
                     setTimeout(function(){
@@ -139,15 +139,15 @@ $(function () {
         })
     }
 
-    /*³õÊ¼»¯Í¼ÐÎÑéÖ¤Âë*/
+    /*åˆå§‹åŒ–å›¾å½¢éªŒè¯ç */
     function validateImageInit() {
         $.ajax({
-            url:"http://106.14.206.226:8080/gameHub/verifiy/get_img_verify",
+            url:`${baseUrl}/gameHub/verifiy/get_img_verify`,
             dataType:'json',
             cache:false,
             type: "get",
             success:function (data) {
-                // $(".huakuai").html('ÏòÓÒ»¬¶¯»¬¿éÌî³äÆ´Í¼Íê³ÉÑéÖ¤');
+                $(".huakuai").html("å‘å³æ»‘åŠ¨æ»‘å—å¡«å……æ‹¼å›¾");
                 $(".imgBg").css("background",'#fff url("data:image/jpg;base64,'+data.oriCopyImage+'")');
                 $(".imgBtn").css('top','5px');
                 $(".imgBtn").find("img").attr("src","data:image/png;base64,"+data.newImage)
@@ -159,4 +159,25 @@ $(function () {
             }
         })
     }
+    $('#agreement-close').click(closeAgreement)
+    $(document).keydown(function(event){
+        if (event.keyCode === 27 || event.keyCode === 96) {
+            closeAgreement()
+        }
+    })
+    $('#open-agreement').click((e) => {
+        e.stopPropagation()
+        $('.agreement-mask').show()
+    })
+    $.ajax({
+        type: 'POST',
+        url: `${baseUrl}/gameHub/user/getProtocol`,
+        success: function (data) {
+            console.log(data)
+            $('#agreement-content')
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 })
