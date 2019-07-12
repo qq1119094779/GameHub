@@ -76,9 +76,9 @@
                     </div>
                     <div>
                         <div class="div mb10"><input type="text" class="email input_text radius-5" placeholder="请输入您的邮箱"
-                                value=""></div>
+                                value="" id="email"></div>
                         <div class="div mb10"><input type="password" class="password input_text radius-5"
-                                placeholder="请输入您的密码" value=""></div>
+                                placeholder="请输入您的密码" value="" id="password"></div>
                         <div class="div"><button class="btn_submit login btn_blue btn_small radius-5 ease-1"
                                 type="submit" style="width:150px;margin-top:25px;margin-bottom:10px;"
                                 id="login">登录</button></div>
@@ -103,36 +103,7 @@
             </div>
         </div>
     </div>
-    <script>
-        $(function () {
-            $('#login').on('click', function () {
-                $.ajax({
-                    type: 'POST',
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    url: 'http://106.14.206.226:8080/gameHub/user/login',
-                    data: JSON.stringify({
-                        email: $('.email').val(),
-                        password: $('.password').val()
-                    }),
-                    success: function (data) {
-                        if (data.code == 'false') {
-                            tipAlert(data.errorMessage)
-                        } else {
-                            tipAlert(data.success)
-                            setTimeout(function () {
-                                window.location.href = '/index.html'
-                            }, 3000)
-                        }
-                    },
-                    error: function (err) {
-                        console.log(err)
-                    }
-                })
-            })
-
-        })
-    </script>
+    <script src="js/view/login.js"></script>
 </body>
 
 </html>
