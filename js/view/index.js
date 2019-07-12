@@ -30,6 +30,23 @@ $(function () {
                   </div>`
         }
         $('#indexslider .swiper-wrapper').html(html)
+        $("#indexslider").slide({
+          titCell: ".hd ul",
+          autoPage: true,  //是否使用自动显示分页
+          mainCell:".swiper-wrapper",
+          autoPlay:true,
+          effect:"fold",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
+          easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
+          trigger:"mouseover",   //触发方式  mouseover,click
+          delayTime:1000,  //延迟时间
+          interTime:5000,  //间隔时间
+          triggerTime:0,
+          pnLoop:true,   //前后按钮循环，默认true
+          mouseOverStop:true   //鼠标经过停止播放，默认true
+          /*startFun:function(i,c,slider, titCell, mainCell, targetCell, prevCell, nextCell){
+              $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
+          }*/
+        });
       }
     },
     error (e) {
