@@ -1,5 +1,8 @@
 
 $(function () {
+    var x = "";
+    let token = ''
+    let isVerification = false
     let closeAgreement = () => {
         $('.agreement-mask').hide()
     }
@@ -16,7 +19,9 @@ $(function () {
             tipAlert('请将内容填写完整')
         } else if (!$("input[type='checkbox']").is(':checked')) {
             tipAlert('请勾选同意协议')
-        } else {
+        } else  if (!isVerification) {
+            tipAlert('请完成验证')
+        }else {
             $.ajax({
                 type: 'POST',
                 contentType: 'application/json',
@@ -30,7 +35,7 @@ $(function () {
                 }),
                 success: function (data) {
                     console.log(data)
-                    if (!data.code) {
+                    if (!data.code || data.code === 'false') {
                         var msg = data.errorMessage;
                         tipAlert(data.errorMessage)
                     } else {
@@ -47,7 +52,6 @@ $(function () {
 
     })
 
-    var x = "";
     $(".comImageValidate").ready(function () {
         validateImageInit();
         $(".refresh").click(function () {
@@ -115,7 +119,7 @@ $(function () {
     function submitDate(x) {
         console.log(x);
         $.ajax({
-            url:`${baseUrl}/gameHub/verifiy/checkPhoto?X=${x}`,
+            url:`${baseUrl}/gameHub/verifiy/checkPhoto?X=${x}&token=${token}`,
             dataType:'json',
             type: "POST",
             success:function (data) {
@@ -124,8 +128,8 @@ $(function () {
                     $(".hkinnerWrap input[name='validX']").val(x);
                     $("#X").val(x);
                     //$("#Y").val(y);
-                    alert("验证成功");
-                    layer.msg("验证成功", {time:1000,icon:1})
+                    isVerification = true
+                    tipAlert('验证成功')
                 } else {
                     $(".hkinnerWrap").addClass("red").removeClass("green");
                     setTimeout(function(){
@@ -147,6 +151,7 @@ $(function () {
             cache:false,
             type: "get",
             success:function (data) {
+                token = data.token
                 $(".huakuai").html("向右滑动滑块填充拼图");
                 $(".imgBg").css("background",'#fff url("data:image/jpg;base64,'+data.oriCopyImage+'")');
                 $(".imgBtn").css('top','5px');

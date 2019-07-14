@@ -75,11 +75,11 @@
     </div>
     <div class="slide_personal_centre fr">
         <div class="hd txt-c mb20">
-            <a href="###" class="inlineblock ease-1"><span>发布</span></a>
-            <a href="###" class="inlineblock ease-1"><span>已赞</span></a>
-            <a href="###" class="inlineblock ease-1"><span>消息</span></a>
-            <a href="###" class="inlineblock ease-1"><span>团队</span></a>
-            <a href="###" class="inlineblock ease-1 on"><span>安全</span></a>
+            <a href="###" class="inlineblock ease-1 table-user" data-no="0"><span>发布</span></a>
+            <a href="###" class="inlineblock ease-1 table-user" data-no="1"><span>已赞</span></a>
+            <a href="###" class="inlineblock ease-1 table-user" data-no="2"><span>消息</span></a>
+            <a href="###" class="inlineblock ease-1 table-user" data-no="3"><span>团队</span></a>
+            <a href="###" class="inlineblock ease-1 table-user on" data-no="4"><span>安全</span></a>
         </div>
         <div class="bd radius-5">
             <!--切换内容 发布-->
@@ -206,42 +206,22 @@
             <!--切换内容 团队-->
             <div class="item">
                 <div class="head">
-                    <select class="selectbox mr10 radius-5" datatype="*" style="width:100px;">
-                        <option value="1">全部</option>
-                        <option value="1.01">加入的</option>
-                        <option value="1.02">发起的</option>
+                    <select class="selectbox mr10 radius-5" datatype="*" style="width:100px;" id="team-select">
+                        <option value="">全部</option>
+                        <option value="2">加入的</option>
+                        <option value="1">发起的</option>
                     </select>
                     <a href="editor_publish.html" class="btn btn_small fr btn_blue inlineblock radius-5 fabu">新发布</a>
                 </div>
-                <ul>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="desc">
-                            消息消息消息消息消息消息消息消息消息消息消息.
-                        </div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">编辑</a>
-                            <a href="###" class="btn btn_small btn_red inlineblock radius-5">解散</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="desc">
-                            消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息.
-                        </div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_red inlineblock radius-5">退出</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="desc">
-                            消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息.
-                        </div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_red inlineblock radius-5">退出</a>
-                        </div>
-                    </li>
+                <ul id="teams">
+                    <!--<li>-->
+                        <!--<div class="title">某某某项目</div>-->
+                        <!--<div class="desc"></div>-->
+                        <!--<div class="operation">-->
+                            <!--<a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">编辑</a>-->
+                            <!--<a href="###" class="btn btn_small btn_red inlineblock radius-5">解散</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
             </div>
 
