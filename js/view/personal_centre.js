@@ -1,5 +1,21 @@
+if (!userId) {
+    window.location.href = '/login.html'
+}
 $(function () {
 //切换
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'json',
+        url: `${baseUrl}/gameHub/user/passShow`,
+        data: JSON.stringify({
+            id: userId,
+            isShow: 1
+        }),
+        success (data) {
+            console.log(data)
+        }
+    })
     $(".slide_personal_centre").slide({
         titCell: ".hd a",
         autoPage: false,  //是否使用自动显示分页
@@ -35,4 +51,31 @@ $(function () {
         checkboxClass: 'icheckbox_flat-red',
         radioClass: 'iradio_flat-red'
     });
+    $('#change-password').click((e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        let senJson = {
+            userId: userId,
+            password: $('#old-password').val(),
+            newPassword: $('#new-password').val(),
+            checkPassword: $('#new-password').val()
+        }
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/editPass`,
+            data: JSON.stringify(senJson),
+            success (data) {
+                if (data.code === 'false' || !data.code) {
+                    tipAlert(data.success)
+                } else {
+                    $('#old-password').val("")
+                    $('#new-password').val("")
+                    tipAlert(data.success)
+                }
+            },
+            error () {}
+        })
+    })
 })

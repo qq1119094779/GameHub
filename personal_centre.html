@@ -11,10 +11,12 @@
     <link type="text/css" rel="stylesheet" href="css/flat/red.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/functions.css">
     <script type="text/javascript" src="js/jquery1.91.min.js"></script>
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
     <script type="text/javascript" src="js/icheck.min.js"></script>
+    <script src='./js/functions.min.js'></script>
     <script type="text/javascript" src="js/common.js"></script>
     <style type="text/css">
         #head{ background: #fff; }
@@ -264,17 +266,17 @@
                             <div class="clearfix">
                                 <div class="form_item mb10 mr20 clearfix">
                                     <p class="atr fl mr10">旧密码</p>
-                                    <input type="password" class="input_text radius-5" name="username" style="width:170px;" placeholder="" />
+                                    <input type="password" class="input_text radius-5" name="username" style="width:170px;" placeholder="" id="old-password" />
                                 </div>
                             </div>
                             <div class="clearfix">
                                 <div class="form_item mb20 mr20 clearfix">
                                     <p class="atr fl mr10">新密码</p>
-                                    <input type="password" class="input_text radius-5" name="username" style="width:170px;" placeholder="" />
+                                    <input type="password" class="input_text radius-5" name="username" style="width:170px;" placeholder="" id="new-password" />
                                 </div>
                             </div>
                             <div class="form_item mb10">
-                                <button class="btn btn_submit btn_blue btn_middle radius-5 ease-3" type="submit" style="width:100px;margin-left:92px;">重置</button>
+                                <button class="btn btn_submit btn_blue btn_middle radius-5 ease-3" style="width:100px;margin-left:92px;" id="change-password">重置</button>
                             </div>
                         </form>
 
