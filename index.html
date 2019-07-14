@@ -14,13 +14,20 @@
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/view/index.js"></script>
+    <style>
+        .indextab {
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <!--[if lte IE 8]>
 <div class="ie7_hints">温馨提示：您所使用的浏览器版本过低，为保证账户安全和浏览体验建议升级为最新版本浏览器</div>
 <![endif]-->
 <!--头部start-->
-<div class="ease-3 index-header" id="head">
+<div class="ease-3" id="head">
     <div class="nr w1200 clearfix mar0">
         <div class="fl"><a class="logo" href="index.html" title=""><img src="images/logo.png" alt="" /></a></div>
         <div class="fl">
@@ -61,9 +68,9 @@
 <div class="mainbody w1200 mar0">
     <div class="submenu">
         <div class="w1200 mar0">
-            <div class="subnav txt-c clearfix">
-                <a href="trial_details.html" class="inlineblock ease-1 on fl"><span>试玩展示</span></a>
-                <a href="idea_details.html" class="inlineblock ease-1 fr"><span>游戏想法</span></a>
+            <div class="subnav indextab txt-c clearfix">
+                <div class="inlineblock tryout ease-1 on fl"><span>试玩展示</span></div>
+                <div class="inlineblock idea ease-1 fr"><span>游戏想法</span></div>
             </div>
         </div>
     </div>
@@ -73,77 +80,9 @@
             <div class="section index_banner">
                 <!--大切换图start-->
                 <div id="indexslider">
+                    <!-- 轮播部分 -->
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" style=" background-image:url(images/lunbo01.jpg);">
-                            <div class="info txt-l">
-                                <div class="title mb20">
-                                    <h2 class="caption">泰坦尼克</h2>
-                                    <p class="date">2019/06/12</p>
-                                    <p class="tag"><span><em>RPG</em></span><span><em>射击</em></span></p>
-                                </div>
-                                <p class="desc">泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情</p>
-                                <div class="focus">
-                                    <span><i class="icon iconfont mr5">&#xe62b;</i><em>99999</em></span>
-                                    <span><i class="icon iconfont mr5">&#xe6b3;</i><em>99999</em></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style=" background-image:url(images/banner_small01.jpg);">
-                            <div class="info txt-l">
-                                <div class="title mb20">
-                                    <h2 class="caption">克尼坦泰</h2>
-                                    <p class="date">2019/06/12</p>
-                                    <p class="tag"><span><em>RPG</em></span><span><em>射击</em></span></p>
-                                </div>
-                                <p class="desc">克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰</p>
-                                <div class="focus">
-                                    <span><i class="icon iconfont mr5">&#xe62b;</i><em>99999</em></span>
-                                    <span><i class="icon iconfont mr5">&#xe6b3;</i><em>99999</em></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style=" background-image:url(images/lunbo01.jpg);">
-                            <div class="info txt-l">
-                                <div class="title mb20">
-                                    <h2 class="caption">泰坦尼克</h2>
-                                    <p class="date">2019/06/12</p>
-                                    <p class="tag"><span><em>RPG</em></span><span><em>射击</em></span></p>
-                                </div>
-                                <p class="desc">泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情</p>
-                                <div class="focus">
-                                    <span><i class="icon iconfont mr5">&#xe62b;</i><em>99999</em></span>
-                                    <span><i class="icon iconfont mr5">&#xe6b3;</i><em>99999</em></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style=" background-image:url(images/banner_small01.jpg);">
-                            <div class="info txt-l">
-                                <div class="title mb20">
-                                    <h2 class="caption">克尼坦泰</h2>
-                                    <p class="date">2019/06/12</p>
-                                    <p class="tag"><span><em>RPG</em></span><span><em>射击</em></span></p>
-                                </div>
-                                <p class="desc">克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰游戏详情克尼坦泰</p>
-                                <div class="focus">
-                                    <span><i class="icon iconfont mr5">&#xe62b;</i><em>99999</em></span>
-                                    <span><i class="icon iconfont mr5">&#xe6b3;</i><em>99999</em></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style=" background-image:url(images/lunbo01.jpg);">
-                            <div class="info txt-l">
-                                <div class="title mb20">
-                                    <h2 class="caption">泰坦尼克</h2>
-                                    <p class="date">2019/06/12</p>
-                                    <p class="tag"><span><em>RPG</em></span><span><em>射击</em></span></p>
-                                </div>
-                                <p class="desc">泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情泰坦尼克游戏详情</p>
-                                <div class="focus">
-                                    <span><i class="icon iconfont mr5">&#xe62b;</i><em>99999</em></span>
-                                    <span><i class="icon iconfont mr5">&#xe6b3;</i><em>99999</em></span>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="hd ease-3 txt-c">
                         <ul></ul>
@@ -155,6 +94,7 @@
             </div>
         </div>
     </div>
+    <!-- 最新列表 -->
     <div class="section">
         <div class="nr w1200 mar0">
             <div class="bt_index clearfix mb10"><h2 class="fl"><i class="icon iconfont txt-red">&#xe601;</i>最新</h2><a href="more.html" class="more ease-1">更多<i class="iconfont ease-3">&#xe617;</i></a></div>
@@ -347,25 +287,7 @@
     </div>
 </div>
 <script type="text/javascript">
-// 轮播图
-$("#indexslider").slide({
-    titCell: ".hd ul",
-    autoPage: true,  //是否使用自动显示分页
-    mainCell:".swiper-wrapper",
-    autoPlay:true,
-    effect:"fold",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
-    easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
-    trigger:"mouseover",   //触发方式  mouseover,click
-    delayTime:1000,  //延迟时间
-    interTime:5000,  //间隔时间
-    triggerTime:0,
-    pnLoop:true,   //前后按钮循环，默认true
-    mouseOverStop:true   //鼠标经过停止播放，默认true
-    /*startFun:function(i,c,slider, titCell, mainCell, targetCell, prevCell, nextCell){
-        $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
-    }*/
-});
-$(function(){
+    $(function(){
     $(".searchMenu").mouseover(function(){
         $("#searchTab").slideDown(100);
         $(this).addClass("searchOpen");
