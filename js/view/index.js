@@ -5,6 +5,7 @@ let a = '000'
  * */
 $(function () {
   let classify = 1
+  let page = 1
 
   /**
    * 试玩轮播数据获取
@@ -113,12 +114,66 @@ $(function () {
 
 
   /**
+   * 获取所有试玩游戏/想法列表
+   * */
+  let allList = function () {
+    let sendJson = {
+      classify: classify,
+      pageNo: page,
+      pageSize: 10
+    }
+    $.ajax({
+      type: "POST",
+      contentType: 'application/json',
+      url: baseUrl + "/gameHub/home/findGameList",
+      dataType: "json",
+      data: JSON.stringify(sendJson),
+      success (data) {
+        let list = data.dataList
+        if (list.length) {
+          let html = ''
+          for (let i = 0, len = list.length; i < len; i++) {
+            let tag = ''
+            if (list[i].gameTypes) {
+              for (let j = 0; j < list[i].gameTypes.length; j++) {
+                tag += `<span><em>${list[i].gameTypes[j]}</em></span>`
+              }
+            }
+            html += `<li>
+                        <a href="trial_details.html" class="item ease-1">
+                            <div class="pic fl ease-1"><img src="images/filter_01.jpg" alt="新闻标题"></div>
+                            <div class="txt">
+                                <h1 class="title fs20 text-overflow">${list[i].gameName}</h1>
+                                <div class="date txt-666">${formatTime(new Date(list[i].createTime))}<p class="tag inlineblock ml10">${tag}</p></div>
+                                <p class="desc fs14 txt-666 mb10">${list[i].briefIntroduction}</p>
+                                <div class="focus">
+                                    <span><i class="icon iconfont mr5"></i><em>${list[i].pointRatio}</em></span>
+                                    <span><i class="icon iconfont mr5"></i><em>${list[i].favoriteCount}</em></span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>`
+          }
+          $('.filter_list ul').html(html)
+        }
+        console.log('data', data)
+      },
+      error (err) {
+
+      }
+    })
+  }
+  allList()
+
+
+  /**
    * 试玩展示按钮发生事件
    * */
   document.querySelector('#indextab .tryout').onclick = function () {
     console.log('tryout', classify)
     if (classify != 1) {
       classify = 1
+      page = 1
       turnPlay()
       newList()
     }
@@ -132,6 +187,7 @@ $(function () {
     console.log('idea', classify)
     if (classify != 2) {
       classify = 2
+      page = 1
       turnPlay()
       newList()
     }
