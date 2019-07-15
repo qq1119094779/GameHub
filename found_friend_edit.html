@@ -10,9 +10,12 @@
     <link type="text/css" rel="stylesheet" href="css/select2.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/functions.css">
+    <link rel="stylesheet" href="css/views/found_friend.css">
     <script type="text/javascript" src="js/jquery1.91.min.js"></script>
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
+    <script src='./js/functions.min.js'></script>
     <script type="text/javascript" src="js/common.js"></script>
     <style type="text/css">
         #head{ background: #fff; }
@@ -63,16 +66,16 @@
     <div class="section">
         <div class="nr w1200 mar0">
             <div id="teamdesc">
-                <p class="mb20">团队名称成：<input type="text" value="我的团队" style="border:1px solid rgba(223,223,223,1) !important;
+                <p class="mb20">团队名称成：<input type="text" id="team-name" value="" style="border:1px solid rgba(223,223,223,1) !important;
     border-radius:2px; width:148px;
 height:18px;
 background:rgba(255,255,255,1)"/></p>
-                <p class="clearfix"><span>团队成员</span> <span class="btn btn_small btn_blue inlineblock radius-5 mr5 fr " style="cursor: pointer">&nbsp;发起邀请&nbsp;</span></p>
+                <p class="clearfix"><span>团队成员：</span> <span class="btn btn_small btn_blue inlineblock radius-5 mr5 fr " style="cursor: pointer" id="open-Invitation">&nbsp;发起邀请&nbsp;</span></p>
             </div>
             <div class="filter_list found_friend_list">
-                <ul>
+                <ul id="team-list">
                     <li>
-                        <a href="###" class="item ease-1 clearfix">
+                        <a href="javascript:;" class="item ease-1 clearfix">
                             <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
                             <div class="txt">
                                 <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
@@ -136,7 +139,41 @@ background:rgba(255,255,255,1)"/></p>
         </div>
     </div>
 </div>
-<div class="invitation-mask"></div>
+<div class="invitation-mask">
+    <div class="invitation">
+        <div class="invitation-header clearfix head-right">
+            <span class="fl">发起邀请</span>
+            <div class="searchbox fr">
+                <div class="search-box-border">
+                    <input type="text" class="input_text search_input ease-3 radius-5" id="search_email" placeholder="请输入邮箱" />
+                    <button class="search_submit ease-3 pointer" id="search_email_btn">搜索</button>
+                </div>
+            </div>
+        </div>
+        <div class="invitation-content">
+            <header class="clearfix">
+                <img src="" alt="" class="fl">
+                <div class="name-mailbox fl">
+                    <p>名字</p>
+                    <span>邮箱</span>
+                </div>
+                <div class="invitation-btn pointer fr">邀请</div>
+            </header>
+            <div class="detailed clearfix">
+                <div class="detailed-item fl">性别：<span>男</span></div>
+                <div class="detailed-item fl">TA玩过的第一款游戏是：<span>男</span></div>
+                <div class="detailed-item fl">年龄：<span>男</span></div>
+                <div class="detailed-item fl">TA最喜欢一款游戏是：<span>男</span></div>
+                <div class="detailed-item fl">地区：<span>男</span></div>
+                <div class="detailed-item fl">TA曾经开发过：<span>男</span></div>
+                <div class="detailed-item fl">QQ：<span>男</span></div>
+                <div class="detailed-item fl">TA从事开发：<span>男</span></div>
+            </div>
+            <div class="detailed-footer pointer">更多信息 》</div>
+        </div>
+    </div>
+</div>
+<script src="js/view/found_friend_edit.js"></script>
 <script type="text/javascript">
 //下拉菜单美化js
 $(function(){

@@ -26,20 +26,28 @@ $(function () {
     let fabulousLoad = true
     // 是否展示当前用户资料
     let isShow = 1
+    //
     // 创建团队
-    //     $.ajax({
-    //         type: 'POST',
-    //         contentType: 'application/json',
-    //         dataType: 'json',
-    //         url: `${baseUrl}/gameHub/user/createTeam`,
-    //         data: JSON.stringify({
-    //             userId: userId,
-    //             teamName: `测试${i + 4}`
-    //         }),
-    //         success (data) {
-    //             console.log(data)
-    //         }
-    //     })
+    $('#create-team').click(function () {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/createTeam`,
+            data: JSON.stringify({
+                userId: userId,
+                teamName: `${userId}${(new Date()).getTime()}`
+            }),
+            success (data) {
+                if (data.code == 'true') {
+                    window.location.href = `editor_publish.html?id`
+                }else {
+                    tipAlert(data.errorMessage)
+                }
+                console.log(data)
+            }
+        })
+    })
     let innitDisplay = () => {
         $.ajax({
             type: 'POST',
@@ -170,9 +178,11 @@ $(function () {
                 }
             }
         } else if (isTable == 1) { // 点赞
-            if (fabulousJson.pageNo <= fabulousPages && fabulousLoad) {
-                fabulousLoad = false
-                getFabulous(fabulousJson)
+            if(scrollbars($('#praised'))) {
+                if (fabulousJson.pageNo <= fabulousPages && fabulousLoad) {
+                    fabulousLoad = false
+                    getFabulous(fabulousJson)
+                }
             }
         }
     })
