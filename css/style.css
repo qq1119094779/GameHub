@@ -403,7 +403,7 @@ transition: all 0.3s ease-out;}
 .found_friend_list .item .pic { width: 125px; height:125px; }
 .found_friend_list .item .txt { padding: 24px 0 0; }
 .found_friend_list .item .desc { height: auto; }
-.found_friend_list .item .tag { position: absolute; right: 40px; top: 86px; }
+.found_friend_list .item .tag { position: absolute; right: 40px; top: 86px; z-index: 200; }
 .found_friend_list .item .tag span { -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; behavior: url(ie-css3.htc);
     zoom: 1; }
 

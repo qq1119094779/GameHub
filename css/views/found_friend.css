@@ -1,0 +1,113 @@
+.invitation-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:rgba(0,0,0,0.1);
+    z-index: 2000;
+    display: none;
+}
+.invitation{
+    height: 423px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:518px;
+    background:rgba(255,255,255,1);
+    border-radius:5px;
+}
+.invitation-header{
+    height: 60px;
+    border-bottom: 1px solid #C7C7C7;
+    line-height: 60px;
+}
+.invitation-header span{
+    color: #236DD3;
+    margin-left: 35px;
+    font-size: 16px;
+}
+.invitation-mask .searchbox{
+    margin-top: 0;
+    width: 200px;
+    padding-top: 14px;
+    line-height: initial;
+    box-sizing: border-box;
+    margin-right: 32px;
+}
+.invitation-mask .searchbox .search-box-border{
+    height: 34px;
+    border: 1px #999 solid;
+    border-radius: 34px;
+}
+.invitation-mask .searchbox .search_submit{
+    top: 14px;
+}
+.invitation-mask .searchbox .search_input {
+    width: 86px;
+    border: none;
+}
+.invitation-content{
+    margin-top: 28px;
+}
+.invitation-content header {
+    padding: 0 32px 0 35px;
+    display: flex;
+    align-items: center;
+}
+.invitation-content header img{
+    width: 67px;
+    height: 69px;
+}
+.invitation-content header .name-mailbox{
+    margin-left: 6px;
+}
+.name-mailbox p{
+    font-size:14px;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    margin-bottom: 10px;
+}
+.name-mailbox span{
+    font-size:14px;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.invitation-btn{
+    width:37px;
+    height:17px;
+    background:rgba(35,109,211,1);
+    border-radius:4px;
+    line-height: 17px;
+    text-align: center;
+    font-size:12px;
+    font-weight:300;
+    margin-left: auto;
+    color:rgba(255,255,255,1);
+}
+.detailed{
+    padding-left: 108px;
+    padding-top: 36px;
+}
+.detailed-item{
+    width: 30%;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #666666;
+}
+.detailed-item:nth-child(2n) {
+    width: 70%;
+}
+.detailed-item span{
+    color: #236DD3;
+}
+.detailed-footer{
+    margin-top: 18px;
+    margin-bottom: 20px;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    font-size: 14px;
+    text-align: right;
+    padding-right: 32px;
+}
