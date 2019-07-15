@@ -28,7 +28,7 @@ $(function () {
                 tag += `<span><em>${data[i].gameTypes[j]}</em></span>`
               }
             }
-            html += `<div class="swiper-slide" style=" background-image: url(${data[i].bannerUrl});">
+            html += `<div class="swiper-slide" style=" background-image: url(${fileUrl}${data[i].bannerUrl});">
                       <div class="info txt-l">
                         <div class="title mb20">
                           <h2 class="caption">${data[i].gameName}</h2>
@@ -92,7 +92,7 @@ $(function () {
             html += `<li>
                         <div class="item ease-3 clearfix">
                             <a href="trial_details.html">
-                                <div class="pic"><img src="${list[i].gamePic}" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
+                                <div class="pic"><img style="width: 100%; height: 172px" src="${fileUrl}${list[i].gamePic}" alt=""></div>
                                 <div class="txt">
                                     <div class="title">${list[i].gameName}</div>
                                     <p class="des txt-666 mb10">${list[i].briefIntroduction}</p>
@@ -130,6 +130,7 @@ $(function () {
       data: JSON.stringify(sendJson),
       success (data) {
         let list = data.dataList
+          console.log(list, 111111)
         if (list.length) {
           let html = ''
           for (let i = 0, len = list.length; i < len; i++) {
@@ -141,7 +142,7 @@ $(function () {
             }
             html += `<li>
                         <a href="trial_details.html" class="item ease-1">
-                            <div class="pic fl ease-1"><img src="images/filter_01.jpg" alt="新闻标题"></div>
+                            <div class="pic fl ease-1"><img src="${fileUrl}${list[i].gamePic}" alt=""></div>
                             <div class="txt">
                                 <h1 class="title fs20 text-overflow">${list[i].gameName}</h1>
                                 <div class="date txt-666">${formatTime(new Date(list[i].createTime))}<p class="tag inlineblock ml10">${tag}</p></div>

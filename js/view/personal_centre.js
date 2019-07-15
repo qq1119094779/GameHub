@@ -1,6 +1,10 @@
 if (!userId) {
     window.location.href = '/login.html'
 }
+function giveTheThumbsUp (id, self) {
+    // praised(2, id).then(() => {
+    // })
+}
 $(function () {
     // 获取团队
     let teamsJson = {
@@ -15,10 +19,13 @@ $(function () {
     let fabulousJson = {
         pageNo: 1,
         pageSize: 10,
-        userId: userId
+        userId: userId,
+        gameClassify: ''
     }
     let fabulousPages = null
     let fabulousLoad = true
+    // 是否展示当前用户资料
+    let isShow = 1
     // 创建团队
     //     $.ajax({
     //         type: 'POST',
@@ -33,6 +40,53 @@ $(function () {
     //             console.log(data)
     //         }
     //     })
+    let innitDisplay = () => {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/passShow`,
+            data: JSON.stringify({
+                id: userId
+            }),
+            success (data) {
+                if (data.personData) {
+                    isShow = 0
+                    $('#data-display .privacy').html('&#xe62b;')
+                } else {
+                    isShow = 1
+                    $('#data-display .privacy').html('&#xe6e3;')
+                }
+            }
+        })
+    }
+    innitDisplay()
+    $('#data-display .privacy').click(function () {
+        if (isShow === 1) {
+            isShow = 0
+        } else {
+            isShow = 1
+        }
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/editShow`,
+            data: JSON.stringify({
+                id: userId,
+                isShow
+            }),
+            success (data) {
+                if (data.code == 'true') {
+                    innitDisplay()
+                    tipAlert(data.success)
+                } else {
+                    tipAlert(data.errorMessage)
+                }
+            }
+        })
+
+    })
     let isLoad = (sendJson, url) => {
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -65,7 +119,7 @@ $(function () {
             data.map(value => {
                 setHtml+= `
                     <li>
-                        <div class="title">${value.team_name}</div>
+                        <div class="title">${value.teamName}</div>
                         <div class="desc"></div>
                         <div class="operation">
                             <a href="found_friend_edit.html?id=${value.id}" class="btn btn_small btn_blue inlineblock radius-5 mr5">编辑</a>
@@ -86,8 +140,24 @@ $(function () {
     // 获取点赞
     let getFabulous = (setJson) => {
         isLoad(setJson, '/gameHub/user/pointList').then(response => {
+            let data = response.dataList
+            let setHtml = ''
             fabulousPages = response.totalPages
-            console.log(response)
+            fabulousJson.pageNo++
+            fabulousLoad = true
+            data.map(value => {
+                setHtml+= `<li class="clearfix praised-item">
+                        <div class="title fl">${value.gameName}</div>
+                        <div class="operation">
+                            <a href="javascript:;" class="btn btn_small btn_blue inlineblock radius-5 mr5" data-id="${value.id}">取消</a>
+                        </div>
+                    </li>`
+            })
+            if (response.pageNumber == 1) {
+                $('#praised').html(setHtml)
+            } else {
+                $('#praised').append(setHtml)
+            }
         })
     }
     $(document).scroll((e) => {
@@ -100,7 +170,7 @@ $(function () {
                 }
             }
         } else if (isTable == 1) { // 点赞
-            if (fabulousJson <= fabulousPages && fabulousLoad) {
+            if (fabulousJson.pageNo <= fabulousPages && fabulousLoad) {
                 fabulousLoad = false
                 getFabulous(fabulousJson)
             }
@@ -189,5 +259,16 @@ $(function () {
             },
             error () {}
         })
+    })
+    // 取消点赞
+    $(document).on('click', '.praised-item a', function () {
+        praised(2, $(this).attr('data-id')).then(response => {
+            $(this).parents('li.praised-item').remove()
+        })
+    })
+    $('#praised-select').change(function () {
+        fabulousJson.pageNo = 1
+        fabulousJson.gameClassify = $(this).val()
+        getFabulous(fabulousJson)
     })
 })

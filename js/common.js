@@ -1,4 +1,5 @@
 const baseUrl = 'http://106.14.206.226:8080'
+const fileUrl = 'http://106.14.206.226/'
 const userId = localStorage.id
 $(function () {
     // 获取当前用户信息
@@ -95,4 +96,64 @@ let IsPicture = () => {
     }
     //alert('False');
     return false;
+}
+/**
+ * 1点赞，2取消点赞
+ * id: 想法||游戏id
+ * */
+let praised = (type, id) => {
+    let senJson = {
+        tipType: type,
+        userId: userId,
+        gameId: id
+    }
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/home/addGameTips`,
+            data: JSON.stringify(senJson),
+            success: function (data) {
+                if (!data.code || data.code=== false) {
+                    reject(data)
+                    tipAlert(data.success)
+                } else {
+                    tipAlert(data.success || data.errorMessage)
+                    resolve(data)
+                }
+            }
+        })
+    })
+}
+
+// url参数解析
+function getUrlkey(url) {
+    var params = {};
+    var urls = url.split("?");
+    var arr = urls[1].split("&");
+    for (var i = 0, l = arr.length; i < l; i++) {
+        var a = arr[i].split("=");
+        params[a[0]] = a[1];
+    }
+    return params;
+}
+/**
+ * 获取游戏分类*/
+let getClassification = () => {
+
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: "get",
+            contentType: 'application/json',
+            url: `${baseUrl}/gameHub/home/findGameType`,
+            dataType: "json",
+            success (data) {
+                resolve(data)
+            },
+            error() {
+                reject()
+            }
+        })
+    })
 }

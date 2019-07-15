@@ -294,7 +294,7 @@ opacity: 1;}
 .list_download_con .item{ padding-bottom:10px; margin-bottom:10px; width:272px;}
 .list_download_con .item .pic{ width:272px; height:172px;}
 .list_download_con .item .pic a{ width:100%; height:100%; overflow:hidden;}
-.list_download_con .item .pic a img{ width:100%; height:auto;
+.list_download_con .item .pic img{ width:100%; height:auto;
 -webkit-transition:all 0.3s ease-out;
 -khtml-transition:all 0.3s ease-out;
 -moz-transition: all 0.3s ease-out;
@@ -610,4 +610,6 @@ opacity: 00;}
     cursor: pointer;
 }
 
-
+.pointer{
+    cursor: pointer;
+}

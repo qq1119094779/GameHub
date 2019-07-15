@@ -126,13 +126,13 @@
             <!--切换内容 已赞-->
             <div class="item">
                 <div class="head">
-                    <select class="selectbox mr10 radius-5" datatype="*" style="width:100px;">
-                        <option value="1">全部</option>
-                        <option value="1.01">试玩</option>
-                        <option value="1.02">想法</option>
+                    <select class="selectbox mr10 radius-5" datatype="*" style="width:100px;" id="praised-select">
+                        <option value="">全部</option>
+                        <option value="2">试玩</option>
+                        <option value="1">想法</option>
                     </select>
                 </div>
-                <ul>
+                <ul id="praised">
                     <li class="clearfix">
                         <div class="title fl">某某某项目</div>
                         <div class="operation">
@@ -230,14 +230,14 @@
                 <div class="safety">
                     <div class="privacy">
                         <div class="title mb10">隐私</div>
-                        <ul class="clearfix">
-                            <li>性别<i class="icon iconfont">&#xe62b;</i></li>
-                            <li>邮箱<i class="icon iconfont">&#xe62b;</i></li>
-                            <li>年龄<i class="icon iconfont">&#xe6e3;</i></li>
-                            <li>QQ<i class="icon iconfont">&#xe62b;</i></li>
-                            <li>地区<i class="icon iconfont">&#xe6e3;</i></li>
-                            <li>发布的<i class="icon iconfont">&#xe6e3;</i></li>
-                            <li>赞过的<i class="icon iconfont">&#xe6e3;</i></li>
+                        <ul class="clearfix" id="data-display">
+                            <li>性别<i class="icon iconfont privacy pointer">&#xe62b;</i></li>
+                            <li>邮箱<i class="icon iconfont pointer">&#xe62b;</i></li>
+                            <li>年龄<i class="icon iconfont privacy pointer">&#xe6e3;</i></li>
+                            <li>QQ<i class="icon iconfont privacy pointer">&#xe62b;</i></li>
+                            <li>地区<i class="icon iconfont privacy pointer">&#xe6e3;</i></li>
+                            <li>发布的<i class="icon iconfont privacy pointer">&#xe6e3;</i></li>
+                            <li>赞过的<i class="icon iconfont privacy pointer">&#xe6e3;</i></li>
                         </ul>
                     </div>
                     <div class="biaodan">

@@ -8,8 +8,11 @@ let uploadHeader = () => {
         fileElementId:"file",
         dataType:"json",
         success:function (data) {
-            console.log(data)
-            // $('#imgHeadPhoto_'+num).attr('src',img.src);
+            if (data.code || data.code === false) {
+                tipAlert(data.errorMessage)
+            } else {
+                $('#imgHeadPhoto_1').attr('src',data.success);
+            }
         }
     });
 }
@@ -17,37 +20,8 @@ $(function () {
     let senJson = {
         id: userId
     }
-    let innitSelect = () => {
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                type: "get",
-                contentType: 'application/json',
-                url: `${baseUrl}/gameHub/home/findGameType`,
-                dataType: "json",
-                success (data) {
-                    let setHtml = ''
-                    let orientationHtml = ''
-                    data.gameType.forEach(value => {
-                        setHtml += `<option value="${value.id}">${value.gameType}</option>`
-                    })
-                    // checked="checked" man
-                    data.location.forEach(value => {
-                        orientationHtml += `<li>
-                            <input type="radio" name="hobby" value="${value.id}" />
-                            <a href="javascript:void(0);" class="radio_item radius-5 ease-1 txt-666"><i class="icon inlineblock"></i><span>${value.gameType}</span></a>
-                        </li>`
-                    })
-                    $('#game-type').html(setHtml)
-                    $('#self-orientation').html(orientationHtml)
-                    resolve()
-                },
-                error (e) {
-                    reject(e)
-                }
-            })
-        })
-    }
     let innitUserData = () => {
+        console.log(senJson)
         $.ajax({
             type: "POST",
             contentType: 'application/json',
@@ -66,6 +40,12 @@ $(function () {
                     $('#birthday-month').val(brithArr[1])
                     $('#birthday-day').val(brithArr[2])
                 }
+                if (data.startTime) {
+                    let startTimeArr = data.startTime.split('-')
+                    $('#development-year').val(startTimeArr[0])
+                    $('#development-month').val(startTimeArr[1])
+                    $('#development-day').val(startTimeArr[2])
+                }
                 $('#user-qq').val(data.qq || '')
                 $('#play-paragraph-one').val(data.firstGame || '')
                 $('#favorite-games').val(data.favoriteGame || '')
@@ -83,7 +63,21 @@ $(function () {
             }
         })
     }
-    innitSelect().then(() => {
+    getClassification().then((data) => {
+        let setHtml = ''
+        let orientationHtml = ''
+        data.gameType.forEach(value => {
+            setHtml += `<option value="${value.id}">${value.gameType}</option>`
+        })
+        // checked="checked" man
+        data.location.forEach(value => {
+            orientationHtml += `<li>
+                            <input type="radio" name="hobby" value="${value.id}" />
+                            <a href="javascript:void(0);" class="radio_item radius-5 ease-1 txt-666"><i class="icon inlineblock"></i><span>${value.gameType}</span></a>
+                        </li>`
+        })
+        $('#game-type').html(setHtml)
+        $('#self-orientation').html(orientationHtml)
         innitUserData()
     })
     // 保存
@@ -99,16 +93,21 @@ $(function () {
             favoiteGame: $('#favorite-games').val(),
             gameTypeId: $('#game-type').val(),
             developerId:  $('#self-orientation').find('.current').prev().val(),
-            startTime: '',
+            startTime: `${$('#development-year').val()}-${$('#development-month').val()}-${$('#development-day').val()}`,
             choiceType: $('#is-development').children('.checked').length ? 1 : 2
         }
         $.ajax({
             type: "POST",
             contentType: 'application/json',
-            url: `${baseUrl}/gameHub/user/showOwnerData`,
+            url: `${baseUrl}/gameHub/user/editOwnerInfo`,
             dataType: "json",
             data: JSON.stringify(preservation),
             success (data) {
+                if (data.code || data.code === false) {
+                    tipAlert(data.errorMessage)
+                } else {
+                    tipAlert('保存成功')
+                }
                 console.log(data)
             }
         })

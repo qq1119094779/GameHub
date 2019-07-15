@@ -63,7 +63,10 @@
     <div class="section">
         <div class="nr w1200 mar0">
             <div id="teamdesc">
-                <p class="mb20">团队名称成：<input type="text" value="我的团队"/></p>
+                <p class="mb20">团队名称成：<input type="text" value="我的团队" style="border:1px solid rgba(223,223,223,1) !important;
+    border-radius:2px; width:148px;
+height:18px;
+background:rgba(255,255,255,1)"/></p>
                 <p class="clearfix"><span>团队成员</span> <span class="btn btn_small btn_blue inlineblock radius-5 mr5 fr " style="cursor: pointer">&nbsp;发起邀请&nbsp;</span></p>
             </div>
             <div class="filter_list found_friend_list">
@@ -130,54 +133,11 @@
                     </li>
                 </ul>
             </div>
-            <div class="pagelist">
-                <p><a href="###">上一页</a><a class="thisclass" href="###">1</a><a href="###">2</a><a href="###">3</a><a href="###">4</a><a href="###">5</a><a href="###">6</a><a href="###">7</a><a href="###">8</a><a href="###">下一页</a></p>
-            </div>
         </div>
     </div>
 </div>
+<div class="invitation-mask"></div>
 <script type="text/javascript">
-// 轮播图
-$("#indexslider").slide({
-    titCell: ".hd ul",
-    autoPage: true,  //是否使用自动显示分页
-    mainCell:".swiper-wrapper",
-    autoPlay:true,
-    effect:"fold",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
-    easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
-    trigger:"mouseover",   //触发方式  mouseover,click
-    delayTime:1000,  //延迟时间
-    interTime:5000,  //间隔时间
-    triggerTime:0,
-    pnLoop:true,   //前后按钮循环，默认true
-    mouseOverStop:true   //鼠标经过停止播放，默认true
-    /*startFun:function(i,c,slider, titCell, mainCell, targetCell, prevCell, nextCell){
-        $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
-    }*/
-});
-$(function(){
-    $(".searchMenu").mouseover(function(){
-        $("#searchTab").slideDown(100);
-        $(this).addClass("searchOpen");
-    });
-    $(".searchMenu").mouseleave(function(){
-        $("#searchTab").slideUp(10);
-        $(this).removeClass("searchOpen");
-    });
-
-    $("#searchTab li").hover(function(){
-        $(this).addClass("selected");
-    },function(){
-        $(this).removeClass("selected");
-    });
-
-    $("#searchTab li").click(function(){
-        $("#searchSelected").html($(this).html());
-        $("#searchTab").fadeOut(50);
-        $("#searchSelected").removeClass("searchOpen");
-    });
-
-});
 //下拉菜单美化js
 $(function(){
     $('.select').select2({
