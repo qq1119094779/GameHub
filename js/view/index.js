@@ -1,11 +1,7 @@
-let a = '000'
-
-/**
- * 试玩轮播数据获取
- * */
 $(function () {
   let classify = 1
   let page = 1
+  let totalPages = null
 
   /**
    * 试玩轮播数据获取
@@ -86,12 +82,13 @@ $(function () {
         console.log('列表', data)
         let list = data.pageList
         let html = ''
+        let url = classify == 1 ? 'trial_details.html' : 'idea_details.html'
         if (list.length) {
           for (let i = 0, len = list.length; i < len; i++) {
             let time = formatTime(new Date(list[i].createTime))
             html += `<li>
                         <div class="item ease-3 clearfix">
-                            <a href="trial_details.html">
+                            <a href="${url}">
                                 <div class="pic"><img style="width: 100%; height: 172px" src="${fileUrl}${list[i].gamePic}" alt=""></div>
                                 <div class="txt">
                                     <div class="title">${list[i].gameName}</div>
@@ -130,7 +127,9 @@ $(function () {
       data: JSON.stringify(sendJson),
       success (data) {
         let list = data.dataList
-          console.log(list, 111111)
+        let url = classify == 1 ? 'trial_details.html' : 'idea_details.html'
+        page++
+        totalPages = data.totalPages
         if (list.length) {
           let html = ''
           for (let i = 0, len = list.length; i < len; i++) {
@@ -141,7 +140,7 @@ $(function () {
               }
             }
             html += `<li>
-                        <a href="trial_details.html" class="item ease-1">
+                        <a href="${url}?classify=${classify}&id=${list[i].id}" class="item ease-1">
                             <div class="pic fl ease-1"><img src="${fileUrl}${list[i].gamePic}" alt=""></div>
                             <div class="txt">
                                 <h1 class="title fs20 text-overflow">${list[i].gameName}</h1>
@@ -193,6 +192,31 @@ $(function () {
       newList()
     }
   }
+
+  /**
+   * 类型条件筛选
+   * */
+  $(document).on("change", '.filter .type', function(e){
+    console.log(222222, $(this).val());
+  })
+
+  /**
+   * 时间条件筛选
+   * */
+  $(document).on("change", '.filter .type', function(e){
+    console.log(222222, $(this).val());
+  })
+
+  /**
+   * 页面滚动
+   * */
+  $(document).scroll((e) => {
+    if (scrollbars($('.filter_list ul'))) {
+      if (page <= totalPages) {
+        allList()
+      }
+    }
+  })
 })
 
 
