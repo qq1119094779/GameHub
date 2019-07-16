@@ -29,7 +29,7 @@ $(function () {
             location.reload()
         })
         $(document).on('click', '#user-header', function(){
-            window.location.href = '/personal_centre.html'
+            window.location.href = 'personal_centre.html'
         })
     }
 })
@@ -141,7 +141,6 @@ function getUrlkey(url) {
 /**
  * 获取游戏分类*/
 let getClassification = () => {
-
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: "get",
@@ -153,6 +152,27 @@ let getClassification = () => {
             },
             error() {
                 reject()
+            }
+        })
+    })
+}
+/**
+ * 查询省市县
+ * */
+let getRegion = (id) => {
+    let pid = id || 0
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: "post",
+            contentType: 'application/json',
+            url: `${baseUrl}/gameHub/user/getAreaInfo`,
+            dataType: "json",
+            data: JSON.stringify({pid: pid}),
+            success (data) {
+                resolve(data)
+            },
+            error(e) {
+                reject(e)
             }
         })
     })

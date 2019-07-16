@@ -1,5 +1,5 @@
 if (!userId) {
-    window.location.href = '/login.html'
+    window.location.href = 'login.html'
 }
 let uploadHeader = () => {
     $.ajaxFileUpload({
@@ -17,11 +17,31 @@ let uploadHeader = () => {
     });
 }
 $(function () {
+    let setRegionSelect = (id) => {
+        let pid = id || 0
+        return new Promise(function (resolve, reject) {
+            getRegion(pid).then(response => {
+                console.log(response)
+                let setHtml = ''
+                response.forEach(value => {
+                    setHtml +=  `<option value="${value.id}">${value.areaName}</option>`
+                })
+                resolve(setHtml)
+            })
+        })
+    }
+    setRegionSelect(0).then(response => {
+        $('#region-1').html(response)
+    })
+    $('#region-1').change(function () {
+        setRegionSelect($(this).val()).then(response => {
+            $('#region-2').html(response)
+        })
+    })
     let senJson = {
         id: userId
     }
     let innitUserData = () => {
-        console.log(senJson)
         $.ajax({
             type: "POST",
             contentType: 'application/json',
@@ -56,7 +76,6 @@ $(function () {
                 if (data.developerId) {
                     $('#self-orientation').find(`input[value=${data.developerId}]`).attr('checked', 'checked"').next().addClass('current')
                 }
-                console.log('data', data)
             },
             error (err) {
 
@@ -84,7 +103,7 @@ $(function () {
     $('#preservation').click(() => {
         let preservation = {
             id: userId,
-            headUrl: '',
+            headUrl: $('#imgHeadPhoto_1').attr('src'),
             nickName: $('#user-name').text(),
             Sex: $(`.current`).prev().val(),
             brith: `${$('#birthday-year').val()}-${$('#birthday-month').val()}-${$('#birthday-day').val()}`,

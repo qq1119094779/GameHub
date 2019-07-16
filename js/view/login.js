@@ -25,7 +25,7 @@ $(function () {
                 } else {
                     tipAlert(data.success)
                     localStorage.id = data.id
-                    window.location.href = '/index.html'
+                    window.location.href = 'index.html'
                     // setTimeout(function () {
                     // }, 3000)
                 }

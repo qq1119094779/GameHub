@@ -69,17 +69,17 @@
         <div class="pic radius-circle mar0">
             <img src="images/avatar.jpg" alt="" />
         </div>
-        <p class="mb5">昵称：<span>adadasdad</span></p>
-        <p class="mb5">邮箱：<span>111@qq.com</span></p>
+        <p class="mb5">昵称：<span id="user-center-name">adadasdad</span></p>
+        <p class="mb5">邮箱：<span id="user-center-email">111@qq.com</span></p>
         <a href="editor.html" class="btn btn_submit btn_blue btn_small radius-5 ease-1" >编辑资料</a>
     </div>
     <div class="slide_personal_centre fr">
         <div class="hd txt-c mb20">
-            <a href="###" class="inlineblock ease-1 table-user" data-no="0"><span>发布</span></a>
-            <a href="###" class="inlineblock ease-1 table-user" data-no="1"><span>已赞</span></a>
-            <a href="###" class="inlineblock ease-1 table-user" data-no="2"><span>消息</span></a>
-            <a href="###" class="inlineblock ease-1 table-user" data-no="3"><span>团队</span></a>
-            <a href="###" class="inlineblock ease-1 table-user on" data-no="4"><span>安全</span></a>
+            <a href="javascript:;" class="inlineblock ease-1 table-user" data-no="0"><span>发布</span></a>
+            <a href="javascript:;" class="inlineblock ease-1 table-user" data-no="1"><span>已赞</span></a>
+            <a href="javascript:;" class="inlineblock ease-1 table-user" data-no="2"><span>消息</span></a>
+            <a href="javascript:;" class="inlineblock ease-1 table-user" data-no="3"><span>团队</span></a>
+            <a href="javascript:;" class="inlineblock ease-1 table-user on" data-no="4"><span>安全</span></a>
         </div>
         <div class="bd radius-5">
             <!--切换内容 发布-->
@@ -133,74 +133,26 @@
                     </select>
                 </div>
                 <ul id="praised">
-                    <li class="clearfix">
-                        <div class="title fl">某某某项目</div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="title fl">某某某项目</div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>
-                        </div>
-                    </li>
+                    <!--<li class="clearfix">-->
+                        <!--<div class="title fl">某某某项目</div>-->
+                        <!--<div class="operation">-->
+                            <!--<a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">取消</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
             </div>
             <!--切换内容 消息-->
             <div class="item">
-                <ul>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="desc">
-                            消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息
-                        </div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">回复</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="desc">
-                            消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息.
-                        </div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">回复</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">某某某项目</div>
-                        <div class="desc">
-                            消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息.
-                        </div>
-                        <div class="operation">
-                            <a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">回复</a>
-                        </div>
-                    </li>
+                <ul  id="message-box">
+                    <!--<li>-->
+                        <!--<div class="title">某某某项目</div>-->
+                        <!--<div class="desc">-->
+                            <!--消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息-->
+                        <!--</div>-->
+                        <!--<div class="operation">-->
+                            <!--<a href="###" class="btn btn_small btn_blue inlineblock radius-5 mr5">回复</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
             </div>
             <!--切换内容 团队-->

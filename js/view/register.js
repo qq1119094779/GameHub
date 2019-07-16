@@ -41,7 +41,7 @@ $(function () {
                     } else {
                         var msg = data.success;
                         tipAlert(msg)
-                        window.location.href = '/login.html'
+                        window.location.href = 'login.html'
                     }
                 },
                 error: function (err) {

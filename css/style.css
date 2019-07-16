@@ -613,3 +613,24 @@ opacity: 00;}
 .pointer{
     cursor: pointer;
 }
+.team-modify-submission{
+    width:96px;
+    height:36px;
+    line-height: 36px;
+    text-align: center;
+    background:rgba(35,109,211,1);
+    border-radius:4px;
+    color: #ffffff;
+    font-size:16px;
+    color:rgba(255,255,255,1);
+    margin: 20px auto;
+    cursor: pointer;
+}
+#user-center-email, #user-center-name{
+    display: inline-block;
+    width: calc(100% - 42px);
+    white-space: nowrap;
+    line-height: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

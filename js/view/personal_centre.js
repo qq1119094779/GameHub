@@ -1,11 +1,22 @@
 if (!userId) {
-    window.location.href = '/login.html'
+    window.location.href = 'login.html'
 }
-function giveTheThumbsUp (id, self) {
-    // praised(2, id).then(() => {
-    // })
-}
+
 $(function () {
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'json',
+        url: `${baseUrl}/gameHub/user/personalData`,
+        data: JSON.stringify({userId: userId}),
+        success: function (data) {
+            $('#user-center-name').html(data.personData.nickName).attr('title', data.personData.nickName)
+            $('#user-center-email').html(data.personData.email).attr('title', data.personData.email)
+            console.log(data, 1233)
+        },
+        error: function () {
+        }
+    })
     // 获取团队
     let teamsJson = {
         pageNo: 1,
@@ -15,6 +26,15 @@ $(function () {
     }
     let teamsPages = null
     let teamsLoad = true
+    // 获取消息列表
+    let messageJson = {
+        pageNo: 1,
+        pageSize: 10,
+        userId,
+        mesType:''
+    }
+    let messagePages = null
+    let messageLoad = true
     // 获取已赞
     let fabulousJson = {
         pageNo: 1,
@@ -40,11 +60,10 @@ $(function () {
             }),
             success (data) {
                 if (data.code == 'true') {
-                    window.location.href = `editor_publish.html?id`
+                    window.location.href = `found_friend_edit.html?id=${data.teamId}`
                 }else {
                     tipAlert(data.errorMessage)
                 }
-                console.log(data)
             }
         })
     })
@@ -126,13 +145,18 @@ $(function () {
             teamsLoad = true
             data.map(value => {
                 setHtml+= `
-                    <li>
+                    <li class="team-item">
                         <div class="title">${value.teamName}</div>
                         <div class="desc"></div>
                         <div class="operation">
-                            <a href="found_friend_edit.html?id=${value.id}" class="btn btn_small btn_blue inlineblock radius-5 mr5">编辑</a>
-                            <a href="javascript:;" class="btn btn_small btn_red inlineblock radius-5" data-id="${value.id}">解散</a>
-                            <a href="javascript:;" class="btn btn_small btn_red inlineblock radius-5">退出</a>
+                        ${value.createType == 1 || $('#team-select').val() == 1 ?
+                            `<a href="found_friend_edit.html?id=${value.id}" class="btn btn_small btn_blue inlineblock radius-5 mr5">编辑</a>
+                            <a href="javascript:;" class="btn btn_small btn_red inlineblock radius-5 dissolution" data-id="${value.id}">解散</a>` :
+                    `
+                    <!--<a href="found_friend_edit.html?id=${value.id}" class="btn btn_small btn_blue inlineblock radius-5 mr5">查看</a>-->
+                    <a href="javascript:;" data-id="${value.id}" class="btn btn_small btn_red inlineblock radius-5 return-teams">退出</a>`
+                        }
+                            
                         </div>
                     </li>`
             })
@@ -145,6 +169,152 @@ $(function () {
             teamsLoad = true
         })
     }
+    // 解散团队
+    $(document).on('click', '.dissolution', function () {
+        let dissolutionJson = {
+            id: $(this).attr('data-id'),
+            userId
+        }
+        let self = $(this)
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/removeTeam`,
+            data: JSON.stringify(dissolutionJson),
+            success (data) {
+                if (data.code === 'true') {
+                    self.parents('li.team-item').remove()
+                    tipAlert(data.success)
+                } else {
+                    tipAlert(data.errorMessage)
+                }
+            }
+        })
+    })
+    // 退出团队
+    $(document).on('click', '.return-teams', function () {
+        let self = $(this)
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json',
+            url: `${baseUrl}/gameHub/user/exitTeam`,
+            dataType: "json",
+            data: JSON.stringify({
+                userId,
+                teamId: self.attr('data-id')
+            }),
+            success (data) {
+                if (data.code == 'true') {
+                    self.parents('.team-item').remove()
+                    tipAlert(data.success)
+                } else {
+                    tipAlert(data.errorMessage)
+                }
+                console.log(data)
+            }
+        })
+    })
+    // 获取消息列表
+    let getMessage = (toJson) =>  {
+        isLoad(toJson, '/gameHub/user/newsList').then(response => {
+            let data = response.dataList
+            let setHtml = ''
+            console.log(data)
+            let isMessageType = (item) => {
+                if (item.mesType == 1) {
+                    return `<a href="javascript:;" class="btn btn_small btn_blue inlineblock radius-5 mr5">回复</a>`
+                } else if (item.mesType == 2) {
+                    return ''
+                } else if (item.mesType == 3) {
+                    if (item.content.indexOf('加入团队成功') !== -1) {
+                        return ''
+                    } else {
+                        return `<a href="javascript:;" class="btn btn_small btn_blue inlineblock radius-5 mr5 yes-add-team" data-id="${item.id}"">同意</a>
+                            <a href="javascript:;" class="btn btn_small btn_red inlineblock radius-5 mr5 no-add-team" data-id="${item.inviteBy }" data-coverInvitee="${item.coverInvitee}">拒绝</a>
+                            <a href="javascript:;" class="btn btn_small btn_gray inlineblock radius-5 mr5 ignore-add-team" data-id="${item.inviteBy }" data-coverInvitee="${item.coverInvitee}">忽略</a>`
+                    }
+                }
+            }
+            messagePages = response.totalPages
+            messageJson.pageNo++
+            messageLoad = true
+            data.forEach(value => {
+                setHtml+= `
+                    <li class="message-item">
+                        <div class="title">${value.messageTitle}</div>
+                        <div class="desc">
+                            ${value.content}
+                        </div>
+                        <div class="operation">
+                           ${isMessageType(value)}
+                        </div>
+                    </li>`
+            })
+            $('#message-box').html(setHtml)
+        })
+    }
+    // 同意加入团队
+    $(document).on('click', '.yes-add-team', function() {
+        let self = $(this)
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json',
+            url: `${baseUrl}/gameHub/user/joinTeam`,
+            dataType: "json",
+            data: JSON.stringify({
+                userId,
+                teamId: self.attr('data-id')
+            }),
+            success (data) {
+                console.log(data)
+                if (data.code == 'true') {
+                    $(self).parents('.message-item').remove()
+                    tipAlert(data.success)
+                } else {
+                    tipAlert(data.errorMessage)
+                }
+            }
+        })
+
+    })
+    // 拒绝，忽略加入团队
+    let delInviteTeam = (teamId, coverInvitee, state) => {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: `${baseUrl}/gameHub/user/editOwnerInfo`,
+                dataType: "json",
+                data: JSON.stringify({
+                    teamId: teamId,
+                    userId: coverInvitee,
+                    state: state
+                }),
+                success() {
+                    if (data.code == 'true') {
+                        resolve(data)
+                        tipAlert(data.success)
+                    } else {
+                        reject(data)
+                        tipAlert(data.errorMessage)
+                    }
+                }
+            })
+        })
+    }
+    $(document).on('click', '.no-add-team', function () {
+        let sef = $(this)
+        delInviteTeam(sef.attr('data-id'), sef.attr('data-coverInvitee'), 2).then(() => {
+            $(self).parents('.message-item').remove()
+        })
+    })
+    $(document).on('click', '.ignore-add-team', function () {
+        let sef = $(this)
+        delInviteTeam(sef.attr('data-id'), sef.attr('data-coverInvitee'), '').then(() => {
+            $(self).parents('.message-item').remove()
+        })
+    })
     // 获取点赞
     let getFabulous = (setJson) => {
         isLoad(setJson, '/gameHub/user/pointList').then(response => {
@@ -184,6 +354,13 @@ $(function () {
                     getFabulous(fabulousJson)
                 }
             }
+        } else if (isTable == 2) { // 消息
+            if(scrollbars($('#message-box'))) {
+                if (messageJson.pageNo <= messagePages && messageLoad) {
+                    messageLoad = false
+                    getFabulous(fabulousJson)
+                }
+            }
         }
     })
     $('#team-select').change(function () {
@@ -193,6 +370,7 @@ $(function () {
     })
     gettingTeams(teamsJson)
     getFabulous(fabulousJson)
+    getMessage(messageJson)
 //     $.ajax({
 //         type: 'POST',
 //         contentType: 'application/json',

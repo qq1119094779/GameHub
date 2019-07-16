@@ -50,6 +50,7 @@
 }
 .invitation-content{
     margin-top: 28px;
+    display: none;
 }
 .invitation-content header {
     padding: 0 32px 0 35px;
