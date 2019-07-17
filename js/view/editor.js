@@ -8,7 +8,7 @@ let uploadHeader = () => {
         fileElementId:"file",
         dataType:"json",
         success:function (data) {
-            if (data.code || data.code === false) {
+            if (data.code == 'false') {
                 tipAlert(data.errorMessage)
             } else {
                 $('#imgHeadPhoto_1').attr('src',`${fileUrl}${data.success}`);
