@@ -16,7 +16,7 @@ $(function () {
                 $('#head .head-right').append(`
                 <div class="user-data fr clearfix">
                     <div class="user-nickname fl">${data.personData.nickName}</div>
-                    <div class="user-header fl" id="user-header" style="background-image: url(${data.personData.headUrl})"></div>
+                    <div class="user-header fl" id="user-header" style="background-image: url(${fileUrl}${data.personData.headUrl})"></div>
                     <div class="fl sign-out" id="sign-out">退出</div>
                 </div>
                 `)
@@ -131,10 +131,12 @@ let praised = (type, id) => {
 function getUrlkey(url) {
     var params = {};
     var urls = url.split("?");
-    var arr = urls[1].split("&");
-    for (var i = 0, l = arr.length; i < l; i++) {
-        var a = arr[i].split("=");
-        params[a[0]] = a[1];
+    if (urls[1]) {
+        var arr = urls[1].split("&");
+        for (var i = 0, l = arr.length; i < l; i++) {
+            var a = arr[i].split("=");
+            params[a[0]] = a[1];
+        }
     }
     return params;
 }

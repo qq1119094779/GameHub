@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
     <link rel="stylesheet" href="./css/functions.css">
+    <link rel="stylesheet" href="css/views/personal_centre.css">
     <script type="text/javascript" src="js/jquery1.91.min.js"></script>
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
@@ -88,9 +89,14 @@
                     <select class="selectbox mr10 radius-5" datatype="*" style="width:100px;">
                         <option value="1">试玩</option>
                         <option value="1.01">想法</option>
-                        <option value="1.02">测评</option>
                     </select>
-                    <a href="editor_publish.html" class="btn btn_small fr btn_blue inlineblock radius-5 fabu">新发布</a>
+                    <div class="btn btn_small fr btn_blue inlineblock radius-5 fabu publication-positioning">
+                        新发布
+                        <div class="publication-tow">
+                            <a href="editor_publish.html" class="btn btn_small fl btn_blue inlineblock radius-5">发布想法</a>
+                            <a href="editor_publish.html?game=true" class="btn btn_small fl btn_blue inlineblock radius-5">发布游戏</a>
+                        </div>
+                    </div>
                 </div>
                 <ul>
                     <li>

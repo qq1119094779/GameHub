@@ -18,7 +18,7 @@ $(function () {
             let setHtml = ''
             $('#team-name').val(data.teamDetail.teamName)
             data.numberList.forEach(value => {
-                setHtml += `<li>
+                setHtml += `<li class="team-list-item">
                         <a href="javascript:;" class="item ease-1 clearfix">
                             <div class="pic fl ease-1 radius-circle"><img src="${value.headUrl}" alt=""></div>
                             <div class="txt">
@@ -28,8 +28,10 @@ $(function () {
                                 value.leadType == 1 ?
                                  '<p class="tag inlineblock ml10"><span><em>发起人</em></span></p>' :
                                  `
-                                    <p class="tag inlineblock ml10"><span><em>成员</em></span></p>
-                                    <p class="tag inlineblock ml10 btn_red kick-out" data-id="${value.id}"><span><em>移除</em></span></p>`   
+                                    <p class="tag inlineblock ml10">
+                                    <span class="kick-out btn_red" data-id="${value.userId}" style="background: #e93930;"><em class="btn_red">移除</em></span>
+                                    <span><em>成员</em></span>
+                                    </p>`   
                                 }
                             </div>
                         </a>
@@ -52,8 +54,9 @@ $(function () {
             }),
             success (data) {
                 if (data.code == 'false') {
-                    tipAlert(data.errorMessage)
+                    tipAlert(data.errorMessage || data.success)
                 } else {
+                    self.parents('.team-list-item').remove()
                     tipAlert('移除成功')
                 }
             }

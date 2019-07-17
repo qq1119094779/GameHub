@@ -11,32 +11,44 @@ let uploadHeader = () => {
             if (data.code || data.code === false) {
                 tipAlert(data.errorMessage)
             } else {
-                $('#imgHeadPhoto_1').attr('src',data.success);
+                $('#imgHeadPhoto_1').attr('src',`${fileUrl}${data.success}`);
             }
         }
     });
 }
 $(function () {
-    let setRegionSelect = (id) => {
+    // 设置地区
+    let setRegionSelect = (id, ele) => {
         let pid = id || 0
+        if (ele) {
+            ele.html('')
+        }
         return new Promise(function (resolve, reject) {
             getRegion(pid).then(response => {
-                console.log(response)
-                let setHtml = ''
-                response.forEach(value => {
-                    setHtml +=  `<option value="${value.id}">${value.areaName}</option>`
-                })
-                resolve(setHtml)
+                if (response[0].code == 'false') {
+                    tipAlert(response[0].errorMessage)
+                } else {
+                    let setHtml = ''
+                    response.forEach(value => {
+                        setHtml +=  `<option value="${value.id}">${value.areaName}</option>`
+                    })
+                    if (ele){
+                        ele.html(setHtml)
+                    }
+                    resolve({setHtml: setHtml, response: response})
+                }
             })
         })
     }
-    setRegionSelect(0).then(response => {
-        $('#region-1').html(response)
-    })
+    // 选择第一个进行联动
     $('#region-1').change(function () {
-        setRegionSelect($(this).val()).then(response => {
-            $('#region-2').html(response)
+        $('#region-3').html('')
+        setRegionSelect($(this).val(), $('#region-2')).then(() => {
+            setRegionSelect($('#region-2').val(), $('#region-3'))
         })
+    })
+    $('#region-2').change(function () {
+        setRegionSelect($(this).val(), $('#region-3'))
     })
     let senJson = {
         id: userId
@@ -49,10 +61,37 @@ $(function () {
             dataType: "json",
             data: JSON.stringify(senJson),
             success (data) {
-                $('#imgHeadPhoto_1').attr('src', data.headUrl)
+                $('#imgHeadPhoto_1').attr('src', `${fileUrl}${data.headUrl}`)
                 $('#user-name').text(data.nickName)
-                if (data.Sex) {
-                    $(`.user-sex[value=${1}]`).attr('checked', 'checked').next().addClass('current')
+                $('#set_user_name').val(data.nickName)
+                if (data.sex) {
+                    $(`.user-sex[value=${data.sex}]`).attr('checked', 'checked').next().addClass('current')
+                }
+                if (data.areaPath) {
+                    let regionArr =  data.areaPath.split(',')
+                    // setRegionSelect($('#region-1').val(), $('#region-2')).then(() => {
+                    //     setRegionSelect($('#region-2').val(), $('#region-3'))
+                    // })
+                    // 根据用户所选设置地区
+                    setRegionSelect(0, $('#region-1')).then((dataJson) => {
+                        let nowOne = dataJson.response.filter(item => item.id  == regionArr[0])[0]
+                        $('#region-1').val(nowOne.id)
+                        setRegionSelect(nowOne.id, $('#region-2')).then((slectTowJson) => {
+                            let nowTow = slectTowJson.response.filter(item => item.id  == regionArr[1])[0]
+                            $('#region-2').val(nowTow.id)
+                            setRegionSelect(nowTow.id, $('#region-3')).then((slectThreeJson) => {
+                                let nowtThree = slectThreeJson.response.filter(item => item.id  == regionArr[2])[0]
+                                $('#region-3').val(nowtThree.id)
+                            })
+                        })
+                    })
+                }  else {
+                    // 初始化设置
+                    setRegionSelect(0, $('#region-1')).then(() => {
+                        setRegionSelect($('#region-1').val(), $('#region-2')).then(() => {
+                            setRegionSelect($('#region-2').val(), $('#region-3'))
+                        })
+                    })
                 }
                 if (data.brith) {
                     let brithArr = data.brith.split('-')
@@ -82,6 +121,19 @@ $(function () {
             }
         })
     }
+    $('#set_user_name_btn').click(function () {
+        $('#user-name').hide()
+        $('#set_user_name').show().focus()
+    })
+    $('#set_user_name').blur(function () {
+        if (!$(this).val()) {
+            tipAlert('昵称不可为空')
+            $(this).focus()
+        } else {
+            $('#user-name').text($(this).val()).show()
+            $(this).hide()
+        }
+    })
     getClassification().then((data) => {
         let setHtml = ''
         let orientationHtml = ''
@@ -102,18 +154,22 @@ $(function () {
     // 保存
     $('#preservation').click(() => {
         let preservation = {
+            // fileUrl
+            // /group1/M00/00/01/rBEpz10uz4SAT3mWAAGuw0orYHI588.png
+            // firstGame firstrGame
             id: userId,
-            headUrl: $('#imgHeadPhoto_1').attr('src'),
+            headUrl: $('#imgHeadPhoto_1').attr('src').replace(fileUrl,''),
             nickName: $('#user-name').text(),
-            Sex: $(`.current`).prev().val(),
+            sex: $(`.current`).prev().val(),
             brith: `${$('#birthday-year').val()}-${$('#birthday-month').val()}-${$('#birthday-day').val()}`,
             qq: $('#user-qq').val(),
-            firstrGame: $('#play-paragraph-one').val(),
-            favoiteGame: $('#favorite-games').val(),
+            firstGame: $('#play-paragraph-one').val(),
+            favoriteGame: $('#favorite-games').val(),
             gameTypeId: $('#game-type').val(),
             developerId:  $('#self-orientation').find('.current').prev().val(),
             startTime: `${$('#development-year').val()}-${$('#development-month').val()}-${$('#development-day').val()}`,
-            choiceType: $('#is-development').children('.checked').length ? 1 : 2
+            choiceType: $('#is-development').children('.checked').length ? 1 : 2,
+            areaPath: `${$('#region-1').val()},${$('#region-2').val()},${$('#region-3').val()}`
         }
         $.ajax({
             type: "POST",
@@ -122,15 +178,13 @@ $(function () {
             dataType: "json",
             data: JSON.stringify(preservation),
             success (data) {
-                if (data.code || data.code === false) {
+                if (!data.code || data.code == 'false') {
                     tipAlert(data.errorMessage)
                 } else {
                     tipAlert('保存成功')
                 }
-                console.log(data)
             }
         })
-        console.log(preservation)
     })
 })
 
