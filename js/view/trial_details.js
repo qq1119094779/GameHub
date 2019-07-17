@@ -1,6 +1,8 @@
 $(function () {
   let classify = null
   let id = null
+  let page = 1
+  let totalPages = null
 
   /**
    * 获取页面参数
@@ -123,4 +125,122 @@ $(function () {
   }
 
   getDetailsData()
+
+
+  /**
+   * 获取评测列表
+   * */
+  let getCommentList = function () {
+    let sendJson = {
+      gameId: id,
+      pageNo: page,
+      pageSize: 10
+    }
+    $.ajax({
+      type: "POST",
+      contentType: 'application/json',
+      url: baseUrl + "/gameHub/recreation/accessPage",
+      dataType: "json",
+      data: JSON.stringify(sendJson),
+      success (data) {
+        console.log('comment', data)
+        let html = ``
+        for (let i = 0, len = data.dataList.length; i < len; i++) {
+          let commentReplayVOList = data.dataList[i].commentReplayVOList
+          let small = ''
+          for (let j = 0, len1 = commentReplayVOList.length; j < len1; j++) {
+            small += `<div class="comments_smallbox">
+                    <div class="comments_item mb20">
+                        <div class="comments_avatar avatar_radius radius-circle"><img src="${fileUrl}${commentReplayVOList[j].respondedHeadUrl}"></div>
+                        <div class="comments_point"><span class="txt-rank txt-peach">${formatTime(new Date(commentReplayVOList[j].createTime))}</span></div>
+                        <div class="comments_content">
+                            <h5 class="comments_user"><span class="mr10 fs14">${commentReplayVOList[j].commentNickname}</span></h5>
+                            <p class="comments_body txt-333 mb20 fs14">${commentReplayVOList[j].content}</p>
+                            <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
+                        </div>
+                    </div>
+                </div>`
+          }
+          html += `<div class="comments_bigbox">
+                <div class="comments_item mb20">
+                    <div class="comments_avatar avatar_radius radius-circle"><img src="${fileUrl}${data.dataList.headUrl}"></div>
+                    <div class="comments_point"><span class="txt-rank txt-peach">${formatTime(new Date(data.dataList[i].createTime))}</span></div>
+                    <div class="comments_content">
+                        <h5 class="comments_user"><span class="mr10 fs16">${data.dataList[i].nickName}</span></h5>
+                        <p class="comments_body txt-333 mb20 fs16">${data.dataList[i].content}</p>
+                        <div class="comments_mark fs16"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
+                    </div>
+                </div>
+                ${small}
+            </div>`
+        }
+        $('.comments .comments_list').html(html)
+      },
+      error (err) {
+
+      }
+    })
+  }
+  getCommentList()
+
+
+  /**
+   * 发布测评
+   * */
+  document.querySelector('#assessment .btn_submit').onclick = function () {
+    let value = $('#assessment .input_text').val()
+    let sendJson = {
+      gameId: id,
+      userId: userId,
+      content: value
+    }
+    $.ajax({
+      type: "POST",
+      contentType: 'application/json',
+      url: baseUrl + "/gameHub/recreation/addAssess",
+      dataType: "json",
+      data: JSON.stringify(sendJson),
+      success (data) {
+
+      },
+      error (err) {
+
+      }
+    })
+  }
+
+
+  /**
+   * 回复测评
+   * */
+  document.querySelector('#assessment1 .btn_submit').onclick = function () {
+    let value = $('#assessment1 .input_text').val()
+    let sendJson = {
+      commentId: '',
+      userId: userId,
+      replayUserId: '',
+      content: value
+    }
+    $.ajax({
+      type: "POST",
+      contentType: 'application/json',
+      url: baseUrl + "/gameHub/recreation/addRespond",
+      dataType: "json",
+      data: JSON.stringify(sendJson),
+      success (data) {
+
+      },
+      error (err) {
+
+      }
+    })
+  }
+
+
+  /**
+   * 点击dialogMask
+   * */
+  document.querySelector('.dialog .dialog-mask').onclick = function () {
+    $('#dialog')[0].style.display = 'none'
+  }
 })
