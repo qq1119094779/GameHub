@@ -47,6 +47,7 @@ let uploadGame = () => {
             if (data.code || data.code == 'false') {
                 tipAlert(data.errorMessage)
             } else {
+                $('#imgHeadPhoto_2').attr('src', './images/2.png')
                 gameUrl = data.success
                 tipAlert('上传成功')
             }
@@ -116,10 +117,11 @@ $(function () {
         $('.screenshot-item').find('img').each(function () {
             screenshotArr.push($(this).attr('src'))
         })
+        // /group1/M00/00/01/rBEpz10uz4SAT3mWAAGuw0orYHI588.png
         let senJson = {
             gameName: $('#gameName').val(),
             gameType: $('.radio_item.current').attr('data-id'),
-            gamePicture: screenshotArr.toString(),
+            gamePicture: '/group1/M00/00/01/rBEpz10uz4SAT3mWAAGuw0orYHI588.png',
             briefIntroduction: $('#briefIntroduction').val(),
             detailedIntroduction: $('#detailedIntroduction').val(),
             specialIntroduction: $('#specialIntroduction').val(),

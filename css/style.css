@@ -669,3 +669,45 @@ opacity: 00;}
 .already_praised{
     color: #236DD3;
 }
+.report-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    display: none;
+}
+.report{
+    width:440px;
+    background:rgba(255,255,255,1);
+    border-radius:3px;
+    position: relative;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 20px;
+}
+.report header{
+    font-size:16px;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.report-class{
+    margin-top: 10px;
+}
+.report-class-item{
+    width:100px;
+    font-size: 16px;
+    color: #666666;
+    text-align: center;
+    line-height: 40px;
+    height:40px;
+    border:1px solid rgba(238,238,238,1);
+    border-radius:3px;
+    cursor: pointer;
+}
+.report-class-item.active{
+    border-color: #236dd3;
+}

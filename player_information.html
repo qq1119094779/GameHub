@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>玩家信息</title>
@@ -15,12 +16,28 @@
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <style type="text/css">
-        #head{ background: #fff; }
-        .nav_shu .nLi h3 a { color: #333; }
-        .nav_shu .nLi h3 a:hover span, .nav_shu .nLi.on h3 a span, .submenu .subnav a span, .submenu .subnav a:hover span { color: #333; border-color: #333; }
-        #head .login_status li a { color: #333; }
+        #head {
+            background: #fff;
+        }
+
+        .nav_shu .nLi h3 a {
+            color: #333;
+        }
+
+        .nav_shu .nLi h3 a:hover span,
+        .nav_shu .nLi.on h3 a span,
+        .submenu .subnav a span,
+        .submenu .subnav a:hover span {
+            color: #333;
+            border-color: #333;
+        }
+
+        #head .login_status li a {
+            color: #333;
+        }
     </style>
 </head>
+
 <body>
 <!--[if lte IE 8]>
 <div class="ie7_hints">温馨提示：您所使用的浏览器版本过低，为保证账户安全和浏览体验建议升级为最新版本浏览器</div>
@@ -32,11 +49,14 @@
         <div class="fl">
             <div class="navbox">
                 <ul class="clearfix nav_shu">
-                    <li class="nLi"><h3><a class="ease-1" href="index.html"><span>探索游戏</span></a></h3>
+                    <li class="nLi">
+                        <h3><a class="ease-1" href="index.html"><span>探索游戏</span></a></h3>
                     </li>
-                    <li class="nLi on"><h3><a class="ease-1" href="found_friend.html"><span>发现朋友</span></a></h3>
+                    <li class="nLi on">
+                        <h3><a class="ease-1" href="found_friend.html"><span>发现朋友</span></a></h3>
                     </li>
-                    <li class="nLi"><h3><a class="ease-1" href="javascript:;"><span>客服</span></a></h3>
+                    <li class="nLi">
+                        <h3><a class="ease-1" href="javascript:;"><span>客服</span></a></h3>
                     </li>
                     </li>
                 </ul>
@@ -64,46 +84,50 @@
     <div class="section playerInfo">
         <div class="head">
             <div class="filter_list found_friend_list">
-                <ul>
-                    <li>
+                <ul id="player_info">
+                    <!-- <li>
                         <a href="###" class="item ease-1 clearfix">
-                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
+                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt="">
+                            </div>
                             <div class="txt">
                                 <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
                                 <p class="desc fs14 txt-666 mb10">coldezhang@foxmail.com</p>
                                 <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
                             </div>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
         <div class="player_desc">
             <ul class="clearfix">
-                <li><label>性别：</label><span class="txt">男</span></li>
-                <li><label>TA玩过的第一款游戏是：</label><span class="txt">XXXXXXXX</span></li>
-                <li><label>年龄：</label><span class="txt">20</span></li>
-                <li><label>TA最喜欢一款游戏是：</label><span class="txt">XXXXXXXX</span></li>
-                <li><label>地区：</label><span class="txt iconfont">&#xe6e3;</span></li>
-                <li><label>TA曾经开发过：</label><span class="txt"><a href="###">跳转游戏列表</a></span></li>
-                <li><label>QQ：</label><span class="txt">2751268851</span></li>
-                <li><label>TA从事开发：</label><span class="txt">XXXXXXXX</span></li>
+                <li class="sex"><label>性别：</label><span class="txt">男</span></li>
+                <li class="firstGame"><label>TA玩过的第一款游戏是：</label><span class="txt">XXXXXXXX</span></li>
+                <li class="age"><label>年龄：</label><span class="txt">20</span></li>
+                <li class="favGam"><label>TA最喜欢一款游戏是：</label><span class="txt">XXXXXXXX</span></li>
+                <li class="local"><label>地区：</label><span class="txt iconfont">&#xe6e3;</span></li>
+                <li class="developed"><label>TA曾经开发过：</label><span class="txt"><a href="###">跳转游戏列表</a></span></li>
+                <li class="qqNum"><label>QQ：</label><span class="txt">2751268851</span></li>
+                <li class="developing"><label>TA从事开发：</label><span class="txt">XXXXXXXX</span></li>
             </ul>
         </div>
     </div>
     <div class="section mb20">
         <div class="nr w1200 mar0">
-            <div class="bt_index clearfix"><h2 class="fl">TA发布过</h2><a href="goods.html" class="more ease-1">更多<i class="iconfont ease-3"></i></a></div>
+            <div class="bt_index clearfix">
+                <h2 class="fl">TA发布过</h2><a href="more.html" class="more ease-1">更多<i
+                    class="iconfont ease-3"></i></a>
+            </div>
             <div class="list_download_con">
-                <ul class="clearfix">
-                    <li>
+                <ul class="clearfix" id="publishedList">
+                    <!-- <li>
                         <div class="item ease-3 clearfix">
                             <a href="trial_details.html">
                                 <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
@@ -115,7 +139,7 @@
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
@@ -127,7 +151,7 @@
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
@@ -139,28 +163,30 @@
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
     </div>
     <div class="section">
         <div class="nr w1200 mar0">
-            <div class="bt_index clearfix"><h2 class="fl">TA赞过</h2></div>
+            <div class="bt_index clearfix">
+                <h2 class="fl">TA赞过</h2>
+            </div>
             <div class="list_download_con">
-                <ul class="clearfix">
-                    <li>
+                <ul class="clearfix" id="evaluatedList">
+                    <!-- <li>
                         <div class="item ease-3 clearfix">
                             <a href="trial_details.html">
                                 <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
@@ -172,7 +198,7 @@
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
@@ -184,7 +210,7 @@
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
@@ -196,65 +222,107 @@
                                 <div class="txt">
                                     <div class="title">泰坦尼克</div>
                                     <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
+                                    <p class="date txt-999">2019/06/13 15:30</p>
                                 </div>
                             </a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-// 轮播图
-$("#indexslider").slide({
-    titCell: ".hd ul",
-    autoPage: true,  //是否使用自动显示分页
-    mainCell:".swiper-wrapper",
-    autoPlay:true,
-    effect:"fold",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
-    easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
-    trigger:"mouseover",   //触发方式  mouseover,click
-    delayTime:1000,  //延迟时间
-    interTime:5000,  //间隔时间
-    triggerTime:0,
-    pnLoop:true,   //前后按钮循环，默认true
-    mouseOverStop:true   //鼠标经过停止播放，默认true
-    /*startFun:function(i,c,slider, titCell, mainCell, targetCell, prevCell, nextCell){
-        $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
-    }*/
-});
-$(function(){
-    $(".searchMenu").mouseover(function(){
-        $("#searchTab").slideDown(100);
-        $(this).addClass("searchOpen");
-    });
-    $(".searchMenu").mouseleave(function(){
-        $("#searchTab").slideUp(10);
-        $(this).removeClass("searchOpen");
-    });
-
-    $("#searchTab li").hover(function(){
-        $(this).addClass("selected");
-    },function(){
-        $(this).removeClass("selected");
-    });
-
-    $("#searchTab li").click(function(){
-        $("#searchSelected").html($(this).html());
-        $("#searchTab").fadeOut(50);
-        $("#searchSelected").removeClass("searchOpen");
-    });
-
-});
-//下拉菜单美化js
-$(function(){
-    $('.select').select2({
-        minimumResultsForSearch: Infinity,
-    });
-})
+    //下拉菜单美化js
+    $(function () {
+        $('.select').select2({
+            minimumResultsForSearch: Infinity,
+        });
+    })
+    // 获取地址栏参数
+    var url = window.location.search;
+    var playerId = url.substring(url.lastIndexOf('=')+1, url.length);
+    // console.log(playerId)
+    var player = {'userId':playerId}
+    var playerInformation = (player) => {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/personalData`,
+            data: JSON.stringify(player),
+            success: function (data) {
+                console.log(data, 255255255255)
+                var personData = data.personData
+                var infoStr = `<li>` +
+                    `<a href="player_information.html?userId=` + personData.id + `" class="item ease-1 clearfix">` +
+                    `<div class="pic fl ease-1 radius-circle"><img src="${fileUrl}` + personData.headUrl + `" alt=""></div>` +
+                    `<div class="txt">` +
+                    `<h1 class="title fs20 text-overflow">` + personData.nickName + `</h1>` +
+                    `<p class="desc fs14 txt-666 mb10">` + personData.email + `</p>` +
+                    `<p class="tag inlineblock ml10"><span><em>` + personData.gameType + `</em></span></p>` +
+                    `</div>` +
+                    `</a>` +
+                    `</li>`
+                $('#player_info').append(infoStr)
+                // 他的个人信息
+                var timestamp = personData.birth
+                var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+                var age = (new Date().getFullYear() - d.getFullYear())
+                $('.player_desc .sex span').text(personData.sex)
+                $('.player_desc .firstGame span').text(personData.firstGame)
+                $('.player_desc .age span').text(age)
+                $('.player_desc .favGam span').text(personData.favorite)
+                $('.player_desc .local span').text(personData.areaPath)
+                $('.player_desc .developed span').text('')
+                $('.player_desc .qqNum span').text(personData.qq)
+                $('.player_desc .developing span').text('')
+                // 他发布过的
+                var publishedList = personData.publishedList
+                $('#publishedList').append(runderList(publishedList))
+                // 他发布过的
+                var evaluatedList = personData.evaluatedList
+                $('#evaluatedList').append(runderList(evaluatedList))
+            },
+            error: function () {
+            }
+        })
+    }
+    playerInformation(player);
+    var runderList = (list) => {
+        str = ''
+        if (list) {
+            list.map(function (val, idx) {
+                let toUrl = val.gameClassify == 1 ? 'trial_details.html' : 'idea_details.html'
+                if (idx <= 3) {
+                    var d = new Date(val.createTime * 1000);    //根据时间戳生成的时间对象
+                    var createTime = (d.getFullYear()) + "/" +
+                        (d.getMonth() + 1) + "/" +
+                        (d.getDate()) + " " +
+                        (d.getHours()) + ":" +
+                        (d.getMinutes())
+                    //  + ":" +
+                    // (d.getSeconds())
+                    str += `<li>` +
+                        `<div class="item ease-3 clearfix">`+
+                        `<a href="${toUrl}?id=${val.id}">`+
+                        `<div class="pic"><img src="${fileUrl}` + val.gamePic + `" alt=""></div>`+
+                        `<div class="txt">`+
+                        `<div class="title">` + val.gameName + `</div>`+
+                        `<p class="des txt-666 mb10">` + val.briefIntroduction + `</p>`+
+                        `<p class="date txt-999">` + createTime + `</p>`+
+                        `</div>`+
+                        `</a>`+
+                        `</div>`+
+                        `</li>`
+                }
+                // console.log(val)
+            })
+        }
+        return str
+    }
 </script>
 
 </body>
+
 </html>

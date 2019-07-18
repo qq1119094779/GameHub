@@ -10,12 +10,37 @@
     <link type="text/css" rel="stylesheet" href="css/select2.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/functions.css">
     <script type="text/javascript" src="js/jquery1.91.min.js"></script>
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script src='./js/functions.min.js'></script>
     <script type="text/javascript" src="js/view/idea_details.js"></script>
-
+    <style>
+        .dialog {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        .dialog-mask {
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.7);
+        }
+        .dialog-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            padding: 20px;
+            background: #fff;
+        }
+    </style>
 </head>
 <body>
 <!--[if lte IE 8]>
@@ -58,20 +83,12 @@
 
 <div class="game_introduction mar0 clearfix page_ieadDetail">
     <div class="fl info txt-l">
-        <div class="title">
-            <h2 class="caption">克尼坦泰</h2>
-            <p class="date">2019/06/12</p>
 
-        </div>
-        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情。游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情。</p>
-        <div class="focus">
-            <span class="txt-blue"><i class="icon iconfont mr5">&#xe6b3;</i><em>99999</em></span>
-            <a href="###" class="btndownload"><em>下载</em></a>
-        </div>
-        <p class="tag"><span><em>RPG</em></span><span><em>射击</em></span><span><em>冒险</em></span><span><em>等等</em></span></p>
     </div>
     <div class="pic fr">
-        <img src="images/youxi01.jpg" alt="" />
+        <div class="swiper-wrapper">
+
+        </div>
     </div>
 </div>
 <div class="mainbody w1200 mar0 page_game_introduction page_ideaxq">
@@ -86,78 +103,13 @@
                 <p class="text_box">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情。游戏详情游戏详游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情。游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情。</p>
             </div>
         </div>
-        <div class="fr version">
-            <h3>版本详情 </h3>
-            <div class="version_box">
-                <div class="zScroll">
-                    <div class="item mb20">
-                        <div class="title">V10.0 </div>
-                        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游  </p>
-                    </div>
-                    <div class="item mb20">
-                        <div class="title">V10.0 </div>
-                        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游  </p>
-                    </div>
-                    <div class="item mb20">
-                        <div class="title">V10.0 </div>
-                        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游  </p>
-                    </div>
-                    <div class="item mb20">
-                        <div class="title">V10.0 </div>
-                        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游  </p>
-                    </div>
-                    <div class="item mb20">
-                        <div class="title">V10.0 </div>
-                        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游  </p>
-                    </div>
-                    <div class="item mb20">
-                        <div class="title">V10.0 </div>
-                        <p class="desc">游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游戏详情游  </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="secton" id="developer">
         <h2 class="mb20">开发人员</h2>
         <div class="filter_list found_friend_list">
             <ul class="clearfix">
-                <li class="fl">
-                    <a href="player_information.html" class="item ease-1 clearfix">
-                        <div class="pic ease-1 fl radius-circle"><img src="images/touxiang01.jpg" alt=""></div>
-                        <div class="txt fl">
-                            <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                            <p class="tag inlineblock ml10"><span><em>策划</em></span><span><em>RGB</em></span></p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="player_information.html" class="item ease-1 clearfix">
-                        <div class="pic ease-1 fl radius-circle"><img src="images/touxiang01.jpg" alt=""></div>
-                        <div class="txt fl">
-                            <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                            <p class="tag inlineblock ml10"><span><em>美术</em></span><span><em>冒险</em></span></p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="player_information.html" class="item ease-1 clearfix">
-                        <div class="pic ease-1 fl radius-circle"><img src="images/touxiang01.jpg" alt=""></div>
-                        <div class="txt fl">
-                            <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                            <p class="tag inlineblock ml10"><span><em>程序</em></span><span><em>剧情</em></span></p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="player_information.html" class="item ease-1 clearfix">
-                        <div class="pic ease-1 fl radius-circle"><img src="images/touxiang01.jpg" alt=""></div>
-                        <div class="txt fl">
-                            <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                            <p class="tag inlineblock ml10"><span><em>生效</em></span><span><em>动作</em></span></p>
-                        </div>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -169,77 +121,45 @@
         <div class="pingjia_box txt-r">
             <textarea class="input_text radius-5 mb20" style="resize:none;" placeholder="这里显示撰写的测评，重新载入后还显示在这里，可以重复修改发表 发表后覆盖原测评" name="content"></textarea>
             <button class="btn_submit btn_blue btn_small radius-5 ease-1" style=" width:80px;">发表</button>
-
         </div>
     </div>
     <div class="section comments">
         <div class="comments_list">
-            <div class="comments_bigbox">
-                <div class="comments_item mb20">
-                    <div class="comments_avatar avatar_radius radius-circle"><img src="images/touxiang01.jpg"></div>
-                    <div class="comments_point"><span class="txt-rank txt-peach">2019/06/17  15:30</span></div>
-                    <div class="comments_content">
-                        <h5 class="comments_user"><span class="mr10 fs16">Unlimited_Deer_ </span></h5>
-                        <p class="comments_body txt-333 mb20 fs16">消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息</p>
-                        <div class="comments_mark fs16"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
-                    </div>
+
+        </div>
+    </div>
+    <div class="dialog" id="dialog">
+        <div class="dialog-mask"></div>
+        <div class="dialog-content">
+            <div class="section" id="assessment1">
+                <div class="title" style="margin-bottom: 10px;">
+                    <h3>回复</h3>
                 </div>
-                <div class="comments_smallbox">
-                    <div class="comments_item mb20">
-                        <div class="comments_avatar avatar_radius radius-circle"><img src="images/touxiang01.jpg"></div>
-                        <div class="comments_point"><span class="txt-rank txt-peach">2019/06/17  15:30</span></div>
-                        <div class="comments_content">
-                            <h5 class="comments_user"><span class="mr10 fs14">Unlimited_Deer_ </span></h5>
-                            <p class="comments_body txt-333 mb20 fs14">消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息</p>
-                            <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comments_smallbox">
-                    <div class="comments_item mb20">
-                        <div class="comments_avatar avatar_radius radius-circle"><img src="images/touxiang01.jpg"></div>
-                        <div class="comments_point"><span class="txt-rank txt-peach">2019/06/17  15:30</span></div>
-                        <div class="comments_content">
-                            <h5 class="comments_user"><span class="mr10">Unlimited_Deer_ </span></h5>
-                            <p class="comments_body txt-333 mb20">消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息</p>
-                            <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
-                        </div>
-                    </div>
+                <div class="pingjia_box txt-r">
+                    <textarea class="input_text radius-5 mb20" style="resize:none;" placeholder="这里显示撰写的测评，重新载入后还显示在这里，可以重复修改发表 发表后覆盖原测评" name="content"></textarea>
+                    <button class="btn_submit btn_blue btn_small radius-5 shadow-text-1 ease-1" style=" width:80px;">发表</button>
                 </div>
             </div>
-            <div class="comments_bigbox">
-                <div class="comments_item mb20">
-                    <div class="comments_avatar avatar_radius radius-circle"><img src="images/touxiang01.jpg"></div>
-                    <div class="comments_point"><span class="txt-rank txt-peach">2019/06/17  15:30</span></div>
-                    <div class="comments_content">
-                        <h5 class="comments_user"><span class="mr10">Unlimited_Deer_ </span></h5>
-                        <p class="comments_body txt-333 mb20">消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息</p>
-                        <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
-                    </div>
-                </div>
-                <div class="comments_smallbox">
-                    <div class="comments_item mb20">
-                        <div class="comments_avatar avatar_radius radius-circle"><img src="images/touxiang01.jpg"></div>
-                        <div class="comments_point"><span class="txt-rank txt-peach">2019/06/17  15:30</span></div>
-                        <div class="comments_content">
-                            <h5 class="comments_user"><span class="mr10">Unlimited_Deer_ </span></h5>
-                            <p class="comments_body txt-333 mb20">消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息</p>
-                            <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comments_smallbox">
-                    <div class="comments_item mb20">
-                        <div class="comments_avatar avatar_radius radius-circle"><img src="images/touxiang01.jpg"></div>
-                        <div class="comments_point"><span class="txt-rank txt-peach">2019/06/17  15:30</span></div>
-                        <div class="comments_content">
-                            <h5 class="comments_user"><span class="mr10">Unlimited_Deer_ </span></h5>
-                            <p class="comments_body txt-333 mb20">消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息消息消息消息消息消息消息消息消息消息，消息消息消息消息消息。消息消息消息消息消息消息消息消息消息消息消息，消息消息消息</p>
-                            <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+<div class="report-mask">
+    <div class="report">
+        <header>违法有害信息,请在下方选择后提交</header>
+        <p style="margin-top: 20px; font-size: 20px; color: #999999">类别</p>
+        <div class="report-class clearfix">
+            <div class="report-class-item fl mr10">垃圾广告</div>
+            <div class="report-class-item fl mr10">低质灌水</div>
+            <div class="report-class-item fl mr10">色情、暴力</div>
+            <div class="report-class-item fl">政治敏感</div>
+            <div class="report-class-item fl mr10 active" style="margin-top: 10px">其他</div>
+        </div>
+        <p>我们会通过消息、邮箱等方式尽快将举报结果通知您。</p>
+        <p style="margin-top: 20px; font-size: 20px; color: #999999">说明</p>
+        <textarea cols="30" rows="10" style="resize:none; width: 440px; height: 102px; margin-top: 10px" id="explain"></textarea>
+        <div style="margin-top: 24px; text-align: center">
+            <button class="btn btn_submit btn_middle radius-5 ease-3 pointer" style="width:88px;" id="determine-report">确定</button>
+            <button class="btn btn_submit btn_blue btn_middle radius-5 ease-3 pointer cancel-report" style="width:88px; margin-left: 12px; background: initial; color: #666666; border-color:#DDDDDD;">取消</button>
         </div>
     </div>
 </div>

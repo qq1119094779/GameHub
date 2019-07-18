@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>发现朋友</title>
@@ -15,12 +16,28 @@
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <style type="text/css">
-        #head{ background: #fff; }
-        .nav_shu .nLi h3 a { color: #333; }
-        .nav_shu .nLi h3 a:hover span, .nav_shu .nLi.on h3 a span, .submenu .subnav a span, .submenu .subnav a:hover span { color: #333; border-color: #333; }
-        #head .login_status li a { color: #333; }
+        #head {
+            background: #fff;
+        }
+
+        .nav_shu .nLi h3 a {
+            color: #333;
+        }
+
+        .nav_shu .nLi h3 a:hover span,
+        .nav_shu .nLi.on h3 a span,
+        .submenu .subnav a span,
+        .submenu .subnav a:hover span {
+            color: #333;
+            border-color: #333;
+        }
+
+        #head .login_status li a {
+            color: #333;
+        }
     </style>
 </head>
+
 <body>
 <!--[if lte IE 8]>
 <div class="ie7_hints">温馨提示：您所使用的浏览器版本过低，为保证账户安全和浏览体验建议升级为最新版本浏览器</div>
@@ -32,11 +49,14 @@
         <div class="fl">
             <div class="navbox">
                 <ul class="clearfix nav_shu">
-                    <li class="nLi"><h3><a class="ease-1" href="index.html"><span>探索游戏</span></a></h3>
+                    <li class="nLi">
+                        <h3><a class="ease-1" href="index.html"><span>探索游戏</span></a></h3>
                     </li>
-                    <li class="nLi on"><h3><a class="ease-1" href="found_friend.html"><span>发现朋友</span></a></h3>
+                    <li class="nLi on">
+                        <h3><a class="ease-1" href="found_friend.html"><span>发现朋友</span></a></h3>
                     </li>
-                    <li class="nLi"><h3><a class="ease-1" href="javascript:;"><span>客服</span></a></h3>
+                    <li class="nLi">
+                        <h3><a class="ease-1" href="javascript:;"><span>客服</span></a></h3>
                     </li>
                     </li>
                 </ul>
@@ -64,7 +84,9 @@
     <div class="section">
         <div class="nr w1200 mar0">
             <div class="clearfix shaixuan">
-                <div class="bt_index clearfix fl mr10"><h2 class="fl">筛选</h2></div>
+                <div class="bt_index clearfix fl mr10">
+                    <h2 class="fl">筛选</h2>
+                </div>
                 <div class="filter mb10 fl">
                     <select class="select" style="width:100px;">
                         <option value="1">无</option>
@@ -82,9 +104,9 @@
                 </div>
             </div>
             <div class="filter_list found_friend_list">
-                <ul>
-                    <li>
-                        <a href="found_friend_edit.html" class="item ease-1 clearfix">
+                <ul id="friend_list">
+                    <!-- <li>
+                        <a href="player_information.html" class="item ease-1 clearfix">
                             <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
                             <div class="txt">
                                 <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
@@ -92,114 +114,70 @@
                                 <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
                             </div>
                         </a>
-                    </li>
-                    <li>
-                        <a href="found_friend_edit.html" class="item ease-1 clearfix">
-                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
-                            <div class="txt">
-                                <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                                <p class="desc fs14 txt-666 mb10">coldezhang@foxmail.com</p>
-                                <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="found_friend_edit.html" class="item ease-1 clearfix">
-                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
-                            <div class="txt">
-                                <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                                <p class="desc fs14 txt-666 mb10">coldezhang@foxmail.com</p>
-                                <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="found_friend_edit.html" class="item ease-1 clearfix">
-                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
-                            <div class="txt">
-                                <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                                <p class="desc fs14 txt-666 mb10">coldezhang@foxmail.com</p>
-                                <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="found_friend_edit.html" class="item ease-1 clearfix">
-                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
-                            <div class="txt">
-                                <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                                <p class="desc fs14 txt-666 mb10">coldezhang@foxmail.com</p>
-                                <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="found_friend_edit.html" class="item ease-1 clearfix">
-                            <div class="pic fl ease-1 radius-circle"><img src="images/found_friend01.jpg" alt=""></div>
-                            <div class="txt">
-                                <h1 class="title fs20 text-overflow">Unlimited_Deer_</h1>
-                                <p class="desc fs14 txt-666 mb10">coldezhang@foxmail.com</p>
-                                <p class="tag inlineblock ml10"><span><em>测试</em></span><span><em>射击</em></span></p>
-                            </div>
-                        </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
-            <div class="pagelist">
-                <p><a href="###">上一页</a><a class="thisclass" href="###">1</a><a href="###">2</a><a href="###">3</a><a href="###">4</a><a href="###">5</a><a href="###">6</a><a href="###">7</a><a href="###">8</a><a href="###">下一页</a></p>
-            </div>
+            <!-- <div class="pagelist">
+            <p><a href="###">上一页</a><a class="thisclass" href="###">1</a><a href="###">2</a><a href="###">3</a><a href="###">4</a><a href="###">5</a><a href="###">6</a><a href="###">7</a><a href="###">8</a><a href="###">下一页</a></p>
+        </div> -->
         </div>
     </div>
 </div>
 <script type="text/javascript">
-// 轮播图
-$("#indexslider").slide({
-    titCell: ".hd ul",
-    autoPage: true,  //是否使用自动显示分页
-    mainCell:".swiper-wrapper",
-    autoPlay:true,
-    effect:"fold",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
-    easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
-    trigger:"mouseover",   //触发方式  mouseover,click
-    delayTime:1000,  //延迟时间
-    interTime:5000,  //间隔时间
-    triggerTime:0,
-    pnLoop:true,   //前后按钮循环，默认true
-    mouseOverStop:true   //鼠标经过停止播放，默认true
-    /*startFun:function(i,c,slider, titCell, mainCell, targetCell, prevCell, nextCell){
-        $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
-    }*/
-});
-$(function(){
-    $(".searchMenu").mouseover(function(){
-        $("#searchTab").slideDown(100);
-        $(this).addClass("searchOpen");
-    });
-    $(".searchMenu").mouseleave(function(){
-        $("#searchTab").slideUp(10);
-        $(this).removeClass("searchOpen");
-    });
+    //下拉菜单美化js
+    $(function () {
+        $('.select').select2({
+            minimumResultsForSearch: Infinity,
+        });
+    })
+    let sendJson = {
+        'pageNo': 1,
+        'pageSize': 10
+    }
+    let totalPages = null
+    let foundFriendLisy = (sendJson) => {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: `${baseUrl}/gameHub/user/userList`,
+            data: JSON.stringify(sendJson),
+            success: function (data) {
+                // console.log(data, 211211211)
+                totalPages = data.totalPages
+                var liStr = ''
+                sendJson.pageNo++
+                data.dataList.map(function (val, idx) {
+                    liStr = `<li>` +
+                        `<a href="player_information.html?userId=` + val.id + `" class="item ease-1 clearfix">` +
+                        `<div class="pic fl ease-1 radius-circle"><img src="${fileUrl}` + val.headUrl + `" alt=""></div>` +
+                        `<div class="txt">` +
+                        `<h1 class="title fs20 text-overflow">` + val.nickName + `</h1>` +
+                        `<p class="desc fs14 txt-666 mb10">` + val.email + `</p>` +
+                        `<p class="tag inlineblock ml10"><span><em>` + val.gameType + `</em></span></p>` +
+                        `</div>` +
+                        `</a>` +
+                        `</li>`
+                    $('.found_friend_list #friend_list').append(liStr)
+                    console.log(val)
+                })
+            },
+            error: function () {
+            }
+        })
+    }
+    foundFriendLisy(sendJson);
+    $(document).scroll((e) => {
+        if (scrollbars($('#friend_list'))) {
+            if (sendJson.pageNo <= totalPages) {
+                foundFriendLisy(sendJson)
+            }
+        }
+    })
 
-    $("#searchTab li").hover(function(){
-        $(this).addClass("selected");
-    },function(){
-        $(this).removeClass("selected");
-    });
 
-    $("#searchTab li").click(function(){
-        $("#searchSelected").html($(this).html());
-        $("#searchTab").fadeOut(50);
-        $("#searchSelected").removeClass("searchOpen");
-    });
-
-});
-//下拉菜单美化js
-$(function(){
-    $('.select').select2({
-        minimumResultsForSearch: Infinity,
-    });
-})
 </script>
 
 </body>
+
 </html>

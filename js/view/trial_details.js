@@ -104,26 +104,20 @@ $(function () {
         $('.page_game_introduction .version .zScroll').html(versionHtml)
 
         // 开发人员
-        if (data.gameUserVOList[0]) {
+        if (data.gameUserVOList.length) {
             for (let i = 0, len = data.gameUserVOList.length; i < len; i++) {
-                let tags = ``
-                if (data.gameUserVOList[i].location) {
-                    for (let j = 0; j < data.gameUserVOList[i].location.length; j++) {
-                        tags = `<span><em>${data.gameUserVOList[i].location[j]}</em></span>`
-                    }
-                }
                 devHtml += `<li class="fl">
-                    <a href="player_information.html" class="item ease-1 clearfix">
-                        <div class="pic ease-1 fl radius-circle"><img src="${fileUrl}${data.gameUserVOList[i].headUrl}" alt=""></div>
-                        <div class="txt fl">
-                            <h1 class="title fs20 text-overflow">${data.gameUserVOList[i].nickName}</h1>
-                            <p class="tag inlineblock ml10">${tags}</p>
-                        </div>
-                    </a>
-                </li>`
+                  <a href="player_information.html" class="item ease-1 clearfix">
+                      <div class="pic ease-1 fl radius-circle"><img src="${fileUrl}${data.gameUserVOList[i].headUrl || ''}" alt=""></div>
+                      <div class="txt fl">
+                          <h1 class="title fs20 text-overflow">${data.gameUserVOList[i].nickName}</h1>
+                          <p class="tag inlineblock ml10"><span><em>${data.gameUserVOList[i].location}</em></span></p>
+                      </div>
+                  </a>
+              </li>`
             }
-            $('.page_game_introduction .developer ul').html(devHtml)
-        }
+            $('.page_game_introduction #developer ul').html(devHtml)
+          }
       },
       error (err) {
 
@@ -145,6 +139,7 @@ $(function () {
   let renderComment = true;
   let pageAll = 0;
   let getCommentList = function () {
+    console.log(123)
     $.ajax({
       type: "POST",
       contentType: 'application/json',
@@ -167,7 +162,10 @@ $(function () {
                         <div class="comments_content">
                             <h5 class="comments_user"><span class="mr10 fs14">${commentReplayVOList[j].commentNickname}</span></h5>
                             <p class="comments_body txt-333 mb20 fs14">${commentReplayVOList[j].content}</p>
-                            <div class="comments_mark"><span class="txt-blue mr10" commentId="${commentReplayVOList[j].commentId}" userId="${commentReplayVOList[j].userId}"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
+                            <div class="comments_mark">
+                            <span class="txt-blue mr10 reply pointer" commentId="${commentReplayVOList[j].commentId}" userId="${commentReplayVOList[j].userId}"><i class="iconfont mr5">&#xe60d;</i>回复</span>
+                            <span class="txt-666 mr10 pointer report-btn" commentId="${data.dataList[i].commentId}" userId="${data.dataList[i].userId}"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span>
+                            </div>
                         </div>
                     </div>
                 </div>`
@@ -179,7 +177,10 @@ $(function () {
                     <div class="comments_content">
                         <h5 class="comments_user"><span class="mr10 fs16">${data.dataList[i].nickName}</span></h5>
                         <p class="comments_body txt-333 mb20 fs16">${data.dataList[i].content}</p>
-                        <div class="comments_mark fs16"><span class="txt-blue mr10" commentId="${data.dataList[i].commentId}" userId="${data.dataList[i].userId}"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
+                        <div class="comments_mark fs16">
+                        <span class="txt-blue mr10 reply pointer" commentId="${data.dataList[i].commentId}" userId="${data.dataList[i].userId}"><i class="iconfont mr5 ">&#xe60d;</i>回复</span>
+                        <span class="txt-666 mr10 pointer report-btn" commentId="${data.dataList[i].commentId}" userId="${data.dataList[i].userId}"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span>
+                        </div>
                     </div>
                 </div>
                 ${small}
@@ -249,9 +250,9 @@ $(function () {
   /**
    * 点击评测回复按钮
    * */
-  $(document).on('click', '.comments_bigbox .comments_mark span', function() {
-    let commentId = document.querySelector('.comments_bigbox .comments_mark span').getAttribute('commentId')
-    let userId = document.querySelector('.comments_bigbox .comments_mark span').getAttribute('userId')
+  $(document).on('click', '.comments_bigbox .comments_mark .reply', function() {
+    let commentId = document.querySelector('.comments_bigbox .comments_mark .reply').getAttribute('commentId')
+    let userId = document.querySelector('.comments_bigbox .comments_mark .reply').getAttribute('userId')
     reply.commentId = commentId
     reply.userId = userId
     document.querySelector('#dialog').style.display = 'block'
@@ -261,9 +262,9 @@ $(function () {
   /**
    * 点击评测回复的回复按钮（就是‘.comments_smallbox’下面的回复按钮）
    * */
-  $(document).on('click', '.comments_smallbox .comments_mark span', function() {
-    let commentId = document.querySelector('.comments_smallbox .comments_mark span').getAttribute('commentId')
-    let userId = document.querySelector('.comments_smallbox .comments_mark span').getAttribute('userId')
+  $(document).on('click', '.comments_smallbox .comments_mark .reply', function() {
+    let commentId = document.querySelector('.comments_smallbox .comments_mark .reply').getAttribute('commentId')
+    let userId = document.querySelector('.comments_smallbox .comments_mark .reply').getAttribute('userId')
     reply.commentId = commentId
     reply.userId = userId
     document.querySelector('#dialog').style.display = 'block'
@@ -288,6 +289,7 @@ $(function () {
       dataType: "json",
       data: JSON.stringify(sendJson),
       success (data) {
+        console.log(data, '111')
         document.querySelector('#dialog').style.display = 'none'
         if (data.code == 'true') {
           getCommentList()
@@ -310,7 +312,6 @@ $(function () {
    * 点赞
    * */
   $(document).on('click', '#thumbs-up', function () {
-    console.log(1)
     // /gameHub/home/addGameTips
       let upJson = {
           tipType: 1,
@@ -343,6 +344,59 @@ $(function () {
             } else {
                 tipAlert(data.errorMessage || data.success)
             }
+          }
+      })
+  })
+  /**
+   * 举报*/
+  let reportJson = {
+      reportId: userId,
+      reporteeId: '',
+      reportType: '',
+      reportTitle: '',
+      contentId: '',
+      content: ''
+  }
+  $(document).on('click', '.report-btn' ,function () {
+      reportJson.reporteeId = $(this).attr('userId')
+      reportJson.reportType = 2
+      reportJson.contentId = $(this).attr('commentId')
+      $('.report-mask').show()
+  })
+  $('.cancel-report').click(function () {
+      $('.report-mask').hide()
+  })
+  $('.report-class-item').click(function () {
+    $(this).addClass('active').siblings().removeClass('active')
+  })
+  $('#explain').keyup(function () {
+    if ($(this).val()) {
+        $('#determine-report').addClass('btn_blue')
+    } else {
+        $('#determine-report').removeClass('btn_blue')
+    }
+  })
+  $('#determine-report').click(function () {
+      reportJson.reportTitle = $('.report-class-item.active').text()
+      reportJson.content = $('#explain').val()
+      if (!reportJson.content) {
+        return
+      }
+      $.ajax({
+          type: "POST",
+          contentType: 'application/json',
+          url: baseUrl + "/gameHub/user/report",
+          dataType: "json",
+          data: JSON.stringify(reportJson),
+          success (data) {
+            if (data.code == 'true') {
+                tipAlert(data.success)
+                $('.report-mask').hide()
+            } else {
+                tipAlert(data.errorMessage)
+            }
+          },
+          error (err) {
           }
       })
   })

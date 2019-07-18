@@ -187,6 +187,7 @@ $(function () {
    * 试玩展示按钮发生事件
    * */
   document.querySelector('#indextab .tryout').onclick = function () {
+    $(this).addClass('on').siblings().removeClass('on')
     console.log('tryout', classify)
     if (classify != 1) {
       classify = 1
@@ -201,6 +202,7 @@ $(function () {
    * 游戏想法按钮发生事件
    * */
   document.querySelector('#indextab .idea').onclick = function () {
+    $(this).addClass('on').siblings().removeClass('on')
     console.log('idea', classify)
     if (classify != 2) {
       classify = 2
