@@ -111,13 +111,28 @@ $(function () {
 
 
   /**
+   * 获取分类方法
+   * */
+  getClassification().then(res => {
+    if (res.gameType.length) {
+      let html = '<option value="0">类型</option>'
+      for (let i = 0, len = res.gameType.length; i < len; i++) {
+        html += `<option value="${res.gameType[i].id}">${res.gameType[i].gameType}</option>`
+      }
+      $('.filter .type').html(html)
+    }
+  })
+
+  /**
    * 获取所有试玩游戏/想法列表
    * */
-  let allList = function () {
+  let allList = function (pass={}) {
     let sendJson = {
       classify: classify,
       pageNo: page,
-      pageSize: 10
+      pageSize: 10,
+      timeType: pass.timeType,
+      gameType: pass.gameType
     }
     $.ajax({
       type: "POST",
@@ -198,13 +213,16 @@ $(function () {
    * */
   $(document).on("change", '.filter .type', function(e){
     console.log(222222, $(this).val());
+    let value = $(this).val() == 0 ? '' : $(this).val()
+    allList({gameType: value})
   })
 
   /**
    * 时间条件筛选
    * */
   $(document).on("change", '.filter .type', function(e){
-    console.log(222222, $(this).val());
+    let value = $(this).val() == 0 ? '' : $(this).val()
+    allList({timeType: value})
   })
 
   /**

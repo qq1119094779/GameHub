@@ -3,12 +3,12 @@ $(function () {
   let id = null
   let page = 1
   let totalPages = null
+  let reply = {}
 
   /**
    * 获取页面参数
    * */
-  let getQueryletiable =function (letiable)
-  {
+  let getQueryletiable =function (letiable) {
     let query = window.location.search.substring(1);
     let lets = query.split("&");
     for (let i=0;i<lets.length;i++) {
@@ -143,7 +143,9 @@ $(function () {
       dataType: "json",
       data: JSON.stringify(sendJson),
       success (data) {
-        console.log('comment', data)
+        // console.log('comment', data)
+        page++
+        totalPages = data.totalPages
         let html = ``
         for (let i = 0, len = data.dataList.length; i < len; i++) {
           let commentReplayVOList = data.dataList[i].commentReplayVOList
@@ -156,7 +158,7 @@ $(function () {
                         <div class="comments_content">
                             <h5 class="comments_user"><span class="mr10 fs14">${commentReplayVOList[j].commentNickname}</span></h5>
                             <p class="comments_body txt-333 mb20 fs14">${commentReplayVOList[j].content}</p>
-                            <div class="comments_mark"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
+                            <div class="comments_mark"><span class="txt-blue mr10" commentId="${commentReplayVOList[j].commentId}" userId="${commentReplayVOList[j].userId}"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
                         </div>
                     </div>
                 </div>`
@@ -168,7 +170,7 @@ $(function () {
                     <div class="comments_content">
                         <h5 class="comments_user"><span class="mr10 fs16">${data.dataList[i].nickName}</span></h5>
                         <p class="comments_body txt-333 mb20 fs16">${data.dataList[i].content}</p>
-                        <div class="comments_mark fs16"><span class="txt-blue mr10"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
+                        <div class="comments_mark fs16"><span class="txt-blue mr10" commentId="${data.dataList[i].commentId}" userId="${data.dataList[i].userId}"><i class="iconfont mr5">&#xe60d;</i>回复</span><span class="txt-666 mr10"><i class="iconfont mr5 txt-red">&#xe651;</i>举报</span></div>
                     </div>
                 </div>
                 ${small}
@@ -189,6 +191,13 @@ $(function () {
    * */
   document.querySelector('#assessment .btn_submit').onclick = function () {
     let value = $('#assessment .input_text').val()
+    console.log('calue', value)
+    if (!value) {
+      alert('请输入评测内容')
+    }
+    if (!userId) {
+      alert('请先登陆')
+    }
     let sendJson = {
       gameId: id,
       userId: userId,
@@ -201,7 +210,10 @@ $(function () {
       dataType: "json",
       data: JSON.stringify(sendJson),
       success (data) {
-
+        console.log('发布评测', data)
+        if (data.code == 'true') {
+          getCommentList()
+        }
       },
       error (err) {
 
@@ -211,14 +223,38 @@ $(function () {
 
 
   /**
+   * 点击评测回复按钮
+   * */
+  $(document).on('click', '.comments_bigbox .comments_mark span', function() {
+    let commentId = document.querySelector('.comments_bigbox .comments_mark span').getAttribute('commentId')
+    let userId = document.querySelector('.comments_bigbox .comments_mark span').getAttribute('userId')
+    reply.commentId = commentId
+    reply.userId = userId
+    document.querySelector('#dialog').style.display = 'block'
+  })
+
+
+  /**
+   * 点击评测回复的回复按钮（就是‘.comments_smallbox’下面的回复按钮）
+   * */
+  $(document).on('click', '.comments_smallbox .comments_mark span', function() {
+    let commentId = document.querySelector('.comments_smallbox .comments_mark span').getAttribute('commentId')
+    let userId = document.querySelector('.comments_smallbox .comments_mark span').getAttribute('userId')
+    reply.commentId = commentId
+    reply.userId = userId
+    document.querySelector('#dialog').style.display = 'block'
+  })
+
+
+  /**
    * 回复测评
    * */
   document.querySelector('#assessment1 .btn_submit').onclick = function () {
     let value = $('#assessment1 .input_text').val()
     let sendJson = {
-      commentId: '',
-      userId: userId,
-      replayUserId: '',
+      commentId: reply.commentId,
+      userId: reply.userId,
+      replayUserId: userId,
       content: value
     }
     $.ajax({
@@ -228,10 +264,13 @@ $(function () {
       dataType: "json",
       data: JSON.stringify(sendJson),
       success (data) {
-
+        document.querySelector('#dialog').style.display = 'none'
+        if (data.code == 'true') {
+          getCommentList()
+        }
       },
       error (err) {
-
+        document.querySelector('#dialog').style.display = 'none'
       }
     })
   }
@@ -243,4 +282,16 @@ $(function () {
   document.querySelector('.dialog .dialog-mask').onclick = function () {
     $('#dialog')[0].style.display = 'none'
   }
+
+
+  /**
+   * 页面滚动
+   * */
+  $(document).scroll((e) => {
+    if (scrollbars($('.comments .comments_list'))) {
+      if (page <= totalPages) {
+        getCommentList()
+      }
+    }
+  })
 })
