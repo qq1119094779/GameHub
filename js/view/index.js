@@ -25,6 +25,7 @@ $(function () {
               }
             }
             html += `<div class="swiper-slide" style=" background-image: url(${fileUrl}${data[i].bannerUrl});">
+                    <a href="trial_details.html?classify=1&id=${data[i].gameId}">
                       <div class="info txt-l">
                         <div class="title mb20">
                           <h2 class="caption">${data[i].gameName}</h2>
@@ -37,6 +38,7 @@ $(function () {
                           <span><i class="icon iconfont mr5">&#xe6b3;</i><em>${data[i].pointRatio}</em></span>
                         </div>
                       </div>
+                    </a>
                   </div>`
           }
           $('#indexslider .swiper-wrapper').html(html)
@@ -88,7 +90,7 @@ $(function () {
             let time = formatTime(new Date(list[i].createTime))
             html += `<li>
                         <div class="item ease-3 clearfix">
-                            <a href="${url}">
+                            <a href="${url}?classify=${classify}&id=${list[i].id}">
                                 <div class="pic"><img style="width: 100%; height: 172px" src="${fileUrl}${list[i].gamePic}" alt=""></div>
                                 <div class="txt">
                                     <div class="title">${list[i].gameName}</div>

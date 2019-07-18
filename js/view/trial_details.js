@@ -1,3 +1,6 @@
+if (!userId) {
+    window.location.href = 'login.html'
+}
 $(function () {
   let classify = null
   let id = null
@@ -51,7 +54,7 @@ $(function () {
         </div>
         <p class="desc">${data.briefIntroduction}</p>
         <div class="focus">
-            <span><i class="icon iconfont mr5">&#xe6b3;</i><em>${data.pointRatio}</em></span>
+            <span id="thumbs-up"><i class="icon iconfont mr5 pointer">&#xe6b3;</i><em>${data.pointRatio}</em></span>
             <a href="${data.gameUrl}" class="btndownload"><em>下载</em></a>
         </div>
         <p class="tag">${tags}</p>`)
@@ -303,16 +306,44 @@ $(function () {
   document.querySelector('.dialog .dialog-mask').onclick = function () {
     $('#dialog')[0].style.display = 'none'
   }
-
-
   /**
-   * 页面滚动
+   * 点赞
    * */
-  $(document).scroll((e) => {
-    if (scrollbars($('.comments .comments_list'))) {
-      if (page <= pageAll) {
-        getCommentList()
+  $(document).on('click', '#thumbs-up', function () {
+    console.log(1)
+    // /gameHub/home/addGameTips
+      let upJson = {
+          tipType: 1,
+          userId,
+          gameId: id
       }
-    }
+      let self = $(this)
+      if (self.hasClass('already_praised')) {
+          upJson.tipType = 2
+      }
+
+      $.ajax({
+          type: "POST",
+          contentType: 'application/json',
+          url: baseUrl + "/gameHub/home/addGameTips",
+          dataType: "json",
+          data: JSON.stringify(upJson),
+          success (data) {
+              console.log(data)
+            if (data.code == "true") {
+              let num = self.find('em').text()
+              if (upJson.tipType == 2) {
+                  num--
+                  self.removeClass('already_praised')
+              } else {
+                  num++
+                  self.addClass('already_praised')
+              }
+              self.find('em').text(num)
+            } else {
+                tipAlert(data.errorMessage || data.success)
+            }
+          }
+      })
   })
 })
