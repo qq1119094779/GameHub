@@ -384,6 +384,15 @@ $(function () {
 //             console.log(data)
 //         }
 //     })
+    // 打开关闭 发布类型
+    $('.publication-positioning').click(function (event) {
+        event.stopPropagation()
+        console.log( $('.publication-tow'))
+        $('.publication-tow').show()
+    })
+    $(document).click(function () {
+        $('.publication-tow').hide()
+    })
 //切换
     $(".slide_personal_centre").slide({
         titCell: ".hd a",

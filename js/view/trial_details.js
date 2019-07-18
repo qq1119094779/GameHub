@@ -39,6 +39,8 @@ $(function () {
         let sliderHtml = ''
         let versionHtml = ''
         let devHtml = ''
+        //banner
+        $('.banner_small').css('background-image', `url(${fileUrl}${data.gamePictureList[0]})`)
         // 简介部分
         for (let i = 0, len = data.gameTypeList.length; i < len; i++) {
           tags += `<span><em>${data.gameTypeList[i]}</em></span>`
@@ -60,9 +62,9 @@ $(function () {
                 <img src="${fileUrl}${data.gamePictureList[i]}" alt="" />
             </div>`
         }
-        $(".game_introduction .pic").html(sliderHtml)
+        $(".game_introduction .pic .swiper-wrapper").html(sliderHtml)
         $(".game_introduction .pic").slide({
-          titCell: ".hd ul",
+          // titCell: ".hd ul",
           autoPage: true,  //是否使用自动显示分页
           mainCell:".swiper-wrapper",
           autoPlay:true,
@@ -99,14 +101,15 @@ $(function () {
         $('.page_game_introduction .version .zScroll').html(versionHtml)
 
         // 开发人员
-        for (let i = 0, len = data.gameUserVOList.length; i < len; i++) {
-          let tags = ``
-          if (data.gameUserVOList[i].Location) {
-            for (let j = 0; j < data.gameUserVOList[i].Location.length; j++) {
-              tags = `<span><em>${data.gameUserVOList[i].Location[j]}</em></span>`
-            }
-          }
-          devHtml += `<li class="fl">
+        if (data.gameUserVOList[0]) {
+            for (let i = 0, len = data.gameUserVOList.length; i < len; i++) {
+                let tags = ``
+                if (data.gameUserVOList[i].location) {
+                    for (let j = 0; j < data.gameUserVOList[i].location.length; j++) {
+                        tags = `<span><em>${data.gameUserVOList[i].location[j]}</em></span>`
+                    }
+                }
+                devHtml += `<li class="fl">
                     <a href="player_information.html" class="item ease-1 clearfix">
                         <div class="pic ease-1 fl radius-circle"><img src="${fileUrl}${data.gameUserVOList[i].headUrl}" alt=""></div>
                         <div class="txt fl">
@@ -115,8 +118,9 @@ $(function () {
                         </div>
                     </a>
                 </li>`
+            }
+            $('.page_game_introduction .developer ul').html(devHtml)
         }
-        $('.page_game_introduction .developer ul').html(devHtml)
       },
       error (err) {
 
@@ -130,22 +134,24 @@ $(function () {
   /**
    * 获取评测列表
    * */
-  let getCommentList = function () {
-    let sendJson = {
+  let commentJson = {
       gameId: id,
       pageNo: page,
       pageSize: 10
-    }
+  };
+  let renderComment = true;
+  let pageAll = 0;
+  let getCommentList = function () {
     $.ajax({
       type: "POST",
       contentType: 'application/json',
       url: baseUrl + "/gameHub/recreation/accessPage",
       dataType: "json",
-      data: JSON.stringify(sendJson),
+      data: JSON.stringify(commentJson),
       success (data) {
-        // console.log('comment', data)
-        page++
-        totalPages = data.totalPages
+        commentJson.pageNo++;
+        pageAll = data.totalPages;
+        renderComment=true;
         let html = ``
         for (let i = 0, len = data.dataList.length; i < len; i++) {
           let commentReplayVOList = data.dataList[i].commentReplayVOList
@@ -176,7 +182,7 @@ $(function () {
                 ${small}
             </div>`
         }
-        $('.comments .comments_list').html(html)
+        $('.comments .comments_list').append(html)
       },
       error (err) {
 
@@ -184,6 +190,14 @@ $(function () {
     })
   }
   getCommentList()
+  $(document).scroll(function () {
+      if(scrollbars($('.comments .comments_list'))) {
+          if (commentJson.pageNo <= pageAll && renderComment) {
+              renderComment = false
+              getCommentList()
+          }
+      }
+  })
 
 
   /**
@@ -213,6 +227,13 @@ $(function () {
         console.log('发布评测', data)
         if (data.code == 'true') {
           getCommentList()
+        }
+        if (data.code == 'false') {
+            tipAlert(data.errorMessage)
+        } else {
+            commentJson.pageNo = 1
+            tipAlert(data.success)
+            getCommentList()
         }
       },
       error (err) {
@@ -289,7 +310,7 @@ $(function () {
    * */
   $(document).scroll((e) => {
     if (scrollbars($('.comments .comments_list'))) {
-      if (page <= totalPages) {
+      if (page <= pageAll) {
         getCommentList()
       }
     }

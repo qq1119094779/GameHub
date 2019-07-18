@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/select2.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script src="js/view/more.js"></script>
     <style type="text/css">
         #head{ background: #fff; }
         .nav_shu .nLi h3 a { color: #333; }
@@ -65,153 +66,25 @@
         <div class="nr w1200 mar0">
             <div class="bt_index clearfix"><h2 class="fl"><i class="icon iconfont txt-blue">&#xe69d;</i>更多游戏</h2></div>
             <div class="list_download_con">
-                <ul class="clearfix">
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item ease-3 clearfix">
-                            <a href="###">
-                                <div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>
-                                <div class="txt">
-                                    <div class="title">泰坦尼克</div>
-                                    <p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>
-                                    <p class="date txt-999">2019/06/13  15:30</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
+                <ul class="clearfix" id="game-List">
+                    <!--<li>-->
+                        <!--<div class="item ease-3 clearfix">-->
+                            <!--<a href="###">-->
+                                <!--<div class="pic"><img src="images/pic_01.jpg" alt="北京北方华光十五成立周年暨二零一四年年会庆典"></div>-->
+                                <!--<div class="txt">-->
+                                    <!--<div class="title">泰坦尼克</div>-->
+                                    <!--<p class="des txt-666 mb10">详情详情详情详情详情详情详情详情详情详情详情详情详情。</p>-->
+                                    <!--<p class="date txt-999">2019/06/13  15:30</p>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
-            </div>
-            <div class="pagelist">
-                <p><a href="###">上一页</a><a class="thisclass" href="###">1</a><a href="###">2</a><a href="###">3</a><a href="###">4</a><a href="###">5</a><a href="###">6</a><a href="###">7</a><a href="###">8</a><a href="###">下一页</a></p>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-// 轮播图
-$("#indexslider").slide({
-    titCell: ".hd ul",
-    autoPage: true,  //是否使用自动显示分页
-    mainCell:".swiper-wrapper",
-    autoPlay:true,
-    effect:"fold",   //特效left,leftLoop,topLoop,top,fade（支持响应窗口大小）,
-    easing:"easeOutCirc",  //缓动效果 easeInQuint,easeInBack,easeOutBounce,easeOutElastic
-    trigger:"mouseover",   //触发方式  mouseover,click
-    delayTime:1000,  //延迟时间
-    interTime:5000,  //间隔时间
-    triggerTime:0,
-    pnLoop:true,   //前后按钮循环，默认true
-    mouseOverStop:true   //鼠标经过停止播放，默认true
-    /*startFun:function(i,c,slider, titCell, mainCell, targetCell, prevCell, nextCell){
-        $('#indexslider .swiper-wrapper .swiper-slide').eq(i).addClass("enter").siblings().removeClass("enter");
-    }*/
-});
-$(function(){
-    $(".searchMenu").mouseover(function(){
-        $("#searchTab").slideDown(100);
-        $(this).addClass("searchOpen");
-    });
-    $(".searchMenu").mouseleave(function(){
-        $("#searchTab").slideUp(10);
-        $(this).removeClass("searchOpen");
-    });
-
-    $("#searchTab li").hover(function(){
-        $(this).addClass("selected");
-    },function(){
-        $(this).removeClass("selected");
-    });
-
-    $("#searchTab li").click(function(){
-        $("#searchSelected").html($(this).html());
-        $("#searchTab").fadeOut(50);
-        $("#searchSelected").removeClass("searchOpen");
-    });
-
-});
 //下拉菜单美化js
 $(function(){
     $('.select').select2({

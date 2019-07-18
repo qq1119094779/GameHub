@@ -1,0 +1,13 @@
+.publication-positioning{
+    position: relative;
+    cursor: pointer;
+}
+.publication-tow{
+    position: absolute;
+    top:30px;
+    left: -70px;
+    width: 154px;
+}
+.publication-tow a:first-child{
+    margin-right: 5px;
+}
