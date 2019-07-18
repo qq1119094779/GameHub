@@ -310,7 +310,7 @@ $(function () {
    * */
   $(document).scroll((e) => {
     if (scrollbars($('.comments .comments_list'))) {
-      if (page <= pageAll) {
+      if (page <= totalPages) {
         getCommentList()
       }
     }
