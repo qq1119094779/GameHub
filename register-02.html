@@ -89,16 +89,12 @@
     <div class="password-form">
         <div class="form-item">
             <div class="form-text fl">邮箱：</div>
-            <div class="form-input fr"><input type="text"></div>
+            <div class="form-input fr"><input type="text" id="mailbox"></div>
         </div>
         <div class="form-item">
             <div class="form-text fl">验证码：</div>
-            <div class="form-input fr"><input type="text" style="width: 320px"><button class="btn btn_submit btn_middle ease-3 pointer btn_blue" style="width:70px; margin-top: -2px">发送验证码</button>
+            <div class="form-input fr"><input type="text" style="width: 286px"><button class="btn btn_submit btn_middle ease-3 pointer btn_blue" style="width:104px; margin-top: -2px" id="send-verification-code">发送验证码</button>
         </div>
-        </div>
-        <div class="form-item">
-            <div class="form-text fl">旧密码：</div>
-            <div class="form-input fr"><input type="text"></div>
         </div>
         <div class="form-item">
             <div class="form-text fl">新密码：</div>
@@ -115,15 +111,49 @@
 </div>
 <script type="text/javascript" src="js/jquery.nicescroll.js"></script>
 <script type="text/javascript">
-    //滚动条
-    $(".zScroll").niceScroll({
-        cursorcolor:"#888888",  //滚动条颜色
-        cursoropacitymax:.5,   //滚动条透明度
-        touchbehavior:true,  //是否允许触摸滚动
-        cursorwidth:"5px",   //滚动条宽度
-        cursorborder:"0",   //滚动条边框
-        cursorborderradius:"5px"  //滚动条圆角
-    });
+    $(function () {
+        let time = null
+        let cont = 60
+        //滚动条
+        $(".zScroll").niceScroll({
+            cursorcolor:"#888888",  //滚动条颜色
+            cursoropacitymax:.5,   //滚动条透明度
+            touchbehavior:true,  //是否允许触摸滚动
+            cursorwidth:"5px",   //滚动条宽度
+            cursorborder:"0",   //滚动条边框
+            cursorborderradius:"5px"  //滚动条圆角
+        });
+        $('#send-verification-code').click(function () {
+            let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+            if (cont !== 60) {
+                return
+            }
+            if (!reg.test( $('#mailbox').val())) {
+                tipAlert('请输入正确邮箱')
+                return
+            }
+            $('#send-verification-code').html(`${cont}后重新发送`)
+            time = setInterval(function () {
+                cont --
+                if (cont == 0) {
+                    clearInterval(time)
+                    $('#send-verification-code').html(`重新发送`)
+                } else {
+                    $('#send-verification-code').html(`${cont}s重新发送`)
+                }
+            }, 1000)
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: baseUrl + "/gameHub/email/modifyPass",
+                dataType: "json",
+                data: JSON.stringify({email: $('#mailbox').val()}),
+                success (data) {
+                    console.log(data)
+                }
+            })
+        })
+    })
 </script>
 
 
