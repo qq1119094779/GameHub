@@ -14,7 +14,7 @@
     <style>
         .customer-service-content{
             width: 870px;
-            margin: 80px auto;
+            margin: 80px auto 200px;
         }
         .problem-item header{
             padding-left: 36px;
@@ -137,14 +137,13 @@
             <p>在登陆页面</p>
         </div>
     </div>
-</div>fr
+</div>
 <div class="Open-Customer-Service">
     <div class="center clearfix">
         <p class="fl">没有找到答案? 尝试与我们联系</p>
         <div onclick="window.open('tencent://message/?uin=10987654321');" class="open-qq fr">联系我们</div>
     </div>
 </div>
-<a  href="javascript:;">打开qq</a>
 <script>
     $(document).on('click', '.problem-item header', function () {
         $(this).parents('.problem-item').addClass('active').siblings().removeClass('active')
