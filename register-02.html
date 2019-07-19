@@ -93,19 +93,19 @@
         </div>
         <div class="form-item">
             <div class="form-text fl">验证码：</div>
-            <div class="form-input fr"><input type="text" style="width: 286px"><button class="btn btn_submit btn_middle ease-3 pointer btn_blue" style="width:104px; margin-top: -2px" id="send-verification-code">发送验证码</button>
+            <div class="form-input fr"><input type="text" style="width: 286px" id="passcode"><button class="btn btn_submit btn_middle ease-3 pointer btn_blue" style="width:104px; margin-top: -2px" id="send-verification-code">发送验证码</button>
         </div>
         </div>
         <div class="form-item">
             <div class="form-text fl">新密码：</div>
-            <div class="form-input fr"><input type="text"></div>
+            <div class="form-input fr"><input type="password" id="newPassword"></div>
         </div>
         <div class="form-item">
             <div class="form-text fl">确认新密码：</div>
-            <div class="form-input fr"><input type="text"></div>
+            <div class="form-input fr"><input type="password" id="checkPassword"></div>
         </div>
         <div style="margin-top: 24px; text-align: center">
-            <button class="btn btn_submit btn_middle radius-5 ease-3 pointer btn_blue" style="width:400px; margin-left: 83px">确定</button>
+            <button class="btn btn_submit btn_middle radius-5 ease-3 pointer btn_blue" style="width:400px; margin-left: 83px" id="change-password">确定</button>
         </div>
     </div>
 </div>
@@ -125,23 +125,13 @@
         });
         $('#send-verification-code').click(function () {
             let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-            if (cont !== 60) {
-                return
-            }
             if (!reg.test( $('#mailbox').val())) {
                 tipAlert('请输入正确邮箱')
                 return
             }
-            $('#send-verification-code').html(`${cont}后重新发送`)
-            time = setInterval(function () {
-                cont --
-                if (cont == 0) {
-                    clearInterval(time)
-                    $('#send-verification-code').html(`重新发送`)
-                } else {
-                    $('#send-verification-code').html(`${cont}s重新发送`)
-                }
-            }, 1000)
+            if (cont !== 60) {
+                return
+            }
             $.ajax({
                 type: "POST",
                 contentType: 'application/json',
@@ -149,6 +139,51 @@
                 dataType: "json",
                 data: JSON.stringify({email: $('#mailbox').val()}),
                 success (data) {
+                    if (data.code == 'true') {
+                        $('#send-verification-code').html(`${cont}后重新发送`)
+                        time = setInterval(function () {
+                            cont --
+                            if (cont == 0) {
+                                clearInterval(time)
+                                $('#send-verification-code').html(`重新发送`)
+                            } else {
+                                $('#send-verification-code').html(`${cont}s重新发送`)
+                            }
+                        }, 1000)
+                    } else {
+                        tipAlert(data.errorMessage)
+                    }
+                }
+            })
+        })
+        $('#change-password').click(function () {
+            let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+            if (!reg.test( $('#mailbox').val())) {
+                tipAlert('请输入正确邮箱')
+                return
+            }
+            let json  = {
+                email: $('#mailbox').val(),
+                passcode:$('#passcode').val(),
+                newPassword:$('#newPassword').val(),
+                checkPassword:$('#checkPassword').val()
+            }
+            if (!json.newPassword || !json.checkPassword) {
+                tipAlert('请输入密码')
+                return
+            }
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: baseUrl + "/gameHub/email/checkCode",
+                dataType: "json",
+                data: JSON.stringify(json),
+                success (data) {
+                    if (data.code == 'true') {
+                        tipAlert('修改成功')
+                    } else {
+                        tipAlert(data.errorMessage)
+                    }
                     console.log(data)
                 }
             })
