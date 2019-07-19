@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/custom-ui.css">
+    <link type="text/css" rel="stylesheet" href="css/select2.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="iconfont/iconfont.css">
+    <script type="text/javascript" src="js/jquery1.91.min.js"></script>
+    <script type="text/javascript" src="js/select2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style>
+        .customer-service-content{
+            width: 870px;
+            margin: 80px auto;
+        }
+        .problem-item header{
+            padding-left: 36px;
+            cursor: pointer;
+            height: 70px;
+            line-height: 70px;
+            background:rgba(244,244,244,1);
+            font-size: 18px;
+            color: #333333;
+        }
+        .problem-item{
+            margin-bottom: 40px;
+        }
+        .problem-item.active header{
+            color: #FFFFFF;
+            background: #236DD3;
+        }
+        .problem-content{
+            display: none;
+            padding: 19px 37px 20px 35px;
+            background:rgba(249,249,249,1);
+        }
+        .problem-item.active .problem-content{
+            display: block;
+        }
+        .problem-content h3 {
+            font-size: 18px;
+        }
+        .problem-content p {
+            margin-top: 10px;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .Open-Customer-Service{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background:rgba(244,244,244,1);
+        }
+        .Open-Customer-Service .center{
+            width: 1200px;
+            line-height: 180px;
+            height: 180px;
+            font-size:24px;
+            margin: 0 auto;
+            color: #575757;
+        }
+        .open-qq{
+            width:297px;
+            height:64px;
+            line-height: 64px;
+            background:rgba(35,109,211,1);
+            border:2px solid rgba(35,109,211,1);
+            border-radius:3px;
+            text-align: center;
+            font-size:18px;
+            color: #ffffff;
+            position: relative;
+            top: 50%;
+            cursor: pointer;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+<!--头部start-->
+<div class="ease-3" id="head">
+    <div class="nr w1200 clearfix mar0">
+        <div class="fl"><a class="logo" href="index.html" title=""><img src="images/logo.png" alt="" /></a></div>
+        <div class="fl">
+            <div class="navbox">
+                <ul class="clearfix nav_shu">
+                    <li class="nLi"><h3><a class="ease-1" href="index.html"><span>探索游戏</span></a></h3>
+                    </li>
+                    <li class="nLi"><h3><a class="ease-1" href="found_friend.html"><span>发现朋友</span></a></h3>
+                    </li>
+                    <li class="nLi on"><h3><a class="ease-1" href="customerService.html"><span>客服</span></a></h3>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="head-right clearfix fr">
+            <div class="searchbox fl">
+                <form method="post">
+                    <input type="text" class="input_text search_input ease-3 radius-5" placeholder="有没有弱提示" />
+                    <button class="search_submit ease-3">搜索</button>
+                </form>
+            </div>
+            <ul class="login_status fr clearfix">
+                <!--登录前的状态-->
+                <li class="top_item top_item_login"><a href="login.html" class="link-a">登录</a></li>
+                <li class="top_item top_item_login"><a href="###" class="link-a">/</a></li>
+                <li class="top_item top_item_login"><a href="register.html" class="link-a txt-peach">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="customer-service-content">
+    <div class="problem-item">
+        <header>账号解决方案</header>
+        <div class="problem-content">
+            <h4>忘记登陆密码怎么办？</h4>
+            <p>在登陆页面</p>
+        </div>
+    </div>
+    <div class="problem-item">
+        <header>账号解决方案</header>
+        <div class="problem-content">
+            <h4>忘记登陆密码怎么办？</h4>
+            <p>在登陆页面</p>
+        </div>
+    </div>
+    <div class="problem-item">
+        <header>账号解决方案</header>
+        <div class="problem-content">
+            <h4>忘记登陆密码怎么办？</h4>
+            <p>在登陆页面</p>
+        </div>
+    </div>
+</div>fr
+<div class="Open-Customer-Service">
+    <div class="center clearfix">
+        <p class="fl">没有找到答案? 尝试与我们联系</p>
+        <div onclick="window.open('tencent://message/?uin=10987654321');" class="open-qq fr">联系我们</div>
+    </div>
+</div>
+<a  href="javascript:;">打开qq</a>
+<script>
+    $(document).on('click', '.problem-item header', function () {
+        $(this).parents('.problem-item').addClass('active').siblings().removeClass('active')
+    })
+</script>
+</body>
+</html>
